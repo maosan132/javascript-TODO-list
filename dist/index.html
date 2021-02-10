@@ -11,8 +11,77 @@
     crossorigin="anonymous" />
 </head>
 
-<body class="text-monospace
-">
+<body class="text-monospace">
+
+  <div id="info">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <picture class="d-flex justify-content-center"><img class="py-2" src="todogen-logo.png"
+              alt="image of todogen logo" /></picture>
+          <p class="text-center">I am a to do creator app. Create a project that will contain lists of tasks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shadow-lg" id="interaction" style="background: linear-gradient(2deg, rgb(47,157,117) 0%, white);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 offset-0" style="text-align: center;">
+          <h4 class="py-2">Projects</h4>
+          <p class="text-center">Select a project and start adding your Todo tasks.<br /></p>
+          <div role="alert" class="alert alert-warning d-flex justify-content-between align-items-center"><span>Default
+              Project</span>
+            <h3 class="m-0"><i class="fa fa-pencil-square text-success mr-2" role="button"></i><i
+                class="fa fa-times-circle text-danger" role="button"></i></h3>
+          </div><button class="btn btn-primary btn-lg d-flex align-items-center mb-2" type="button"><i
+              class="fa fa-home"></i> Home</button>
+          <hr />
+          <h4 class="py-2">New Project</h4>
+          <form class="pb-2">
+            <div class="form-group d-flex align-items-center"><label>Name:</label><input type="text"
+                class="form-control" /></div><button class="btn btn-primary btn-block btn-lg mb-1" type="button">Save
+              and Start!</button>
+          </form>
+          <hr />
+          <h4 class="py-2">Todo List Creator</h4>
+          <form class="pb-4">
+            <div class="form-group"><label>Name for the current task:</label><input type="text" class="form-control" />
+            </div>
+            <div class="form-group"><label>Task&#39;s Description:</label><textarea class="form-control"></textarea>
+            </div>
+            <div class="form-group"><label>Due Date:</label><input class="form-control" type="date" /></div>
+            <div class="form-group d-flex justify-content-around"><label>Priority:</label>
+              <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-1" /><label
+                  class="form-check-label" for="formCheck-1">High</label></div>
+              <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-3" /><label
+                  class="form-check-label" for="formCheck-1">Normal</label></div>
+              <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-2" /><label
+                  class="form-check-label" for="formCheck-1">Low</label></div>
+            </div><button class="btn btn-primary btn-block btn-lg mb-4" type="button">Add this Task!</button>
+            <div role="alert" class="alert alert-warning d-flex justify-content-between align-items-center"><span>Wash
+                dishes</span>
+              <h3 class="m-0"><i class="fa fa-check-circle text-success mr-2" role="button"></i><i
+                  class="fa fa-minus-circle text-danger" role="button"></i></h3>
+            </div>
+            <div role="alert" class="alert alert-warning d-flex justify-content-between align-items-center"><span>Walk
+                dog</span>
+              <h3 class="m-0"><i class="fa fa-check-circle text-success mr-2" role="button"></i><i
+                  class="fa fa-minus-circle text-danger" role="button"></i></h3>
+            </div>
+            <hr />
+            <div><button class="btn btn-primary btn-block btn-lg border rounded" id="new" type="button"
+                style="height: 68px;text-align: center;">New Project</button><button
+                class="btn btn-info btn-block btn-lg border rounded" id="default-project" type="button"
+                style="height: 68px;text-align: center;">Use Default Project</button><button
+                class="btn btn-success btn-block btn-lg border rounded" id="projects" type="button"
+                style="height: 68px;text-align: center;">Explore Projects</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container ">
     <h1 class="text-center my-5">Todo List Creator</h1>
@@ -38,11 +107,12 @@
 
 
   <template id="template-project">
-    <div class="alert alert-primary d-flex justify-content-between align-items-center">
+    <div class="alert alert-primary d-flex justify-content-between align-items-center" id="default">
       <p class="m-0">Default Project</p>
       <h3 class="m-0"><i class="fa fa-pencil-square text-success mr-2" role="button"></i><i
-        class="fa fa-times-circle text-danger" role="button"></i></h3>
+          class="fa fa-times-circle text-danger" role="button"></i></h3>
     </div>
+
   </template>
   <script src="bundle.js"></script>
 </body>
