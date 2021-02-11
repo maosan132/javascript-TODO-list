@@ -1,8 +1,11 @@
-const form = document.getElementById('form')
+const form = document.getElementById('todo-form')
 const input = document.getElementById('input');
-const taskList = document.getElementById('task-list')
+const textarea = document.querySelector('textarea');
+const deadline = document.querySelector('input[type=date]');
+const priority = document.querySelectorAll('input[type=radio]');
+const taskList = document.getElementById('task-list');
 const template = document.getElementById('template-task').content
-const fragment = document.createDocumentFragment()
+const fragment = document.createDocumentFragment();
 
 // let tasks = {
 //   6345634563: {
@@ -41,19 +44,30 @@ const resetForm = () => {
 }
 
 const setTask = e => {
+  console.log(textarea.value);
   if(input.value.trim() === '') {
-    console.log('empty')
+    //console.log('empty')
     return
   }
+
+  let selectedValue;
+  for (const radio of priority) {
+      if (radio.checked) {
+        console.log(radio.value);
+          selectedValue = radio.value;
+          break;
+      }
+  };
 
   const task = {
     id: Date.now(),
     title: input.value,
-    //description: ,
-    // duoDate:,
-    // priority: ,
-    status: false
+    description: textarea.value,
+    date: deadline.value,
+    priority: selectedValue,
+    status: false,
   }
+  
   console.log(tasks);
 
   tasks[task.id] = task
