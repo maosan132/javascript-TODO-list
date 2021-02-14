@@ -1,3 +1,5 @@
+
+
 const form = document.getElementById('todo-form')
 const input = document.getElementById('input');
 const textarea = document.querySelector('textarea');
@@ -125,3 +127,5 @@ const btnAction = (e) => {
   }
    e.stopPropagation()
 }
+
+export {newTodo};

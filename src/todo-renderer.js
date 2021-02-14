@@ -1,6 +1,7 @@
 // file to render:
 // - html for todo lists
 
+import {newTodoForm} from './forms'
 
 //empty container:
 <div class="container ">
@@ -28,3 +29,5 @@
         class="fa fa-minus-circle text-danger" role="button"></i></h3>
   </div>
 </div>
+
+export {renderTodo}

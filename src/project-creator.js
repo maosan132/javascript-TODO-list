@@ -1,10 +1,25 @@
 // File for functions:
 // - Project object factory
 // - delete project 
+//import { createNewProject } from './modules-loader';
 
 
-const form = document.getElementById('form')
-const input = document.getElementById('input');
-const taskList = document.getElementById('task-list')
-const template = document.getElementById('template-task').content
-const fragment = document.createDocumentFragment()
+// when new project button, default button and when all projects buttons are hit
+
+
+// project creator
+
+// todo creator
+
+// show list of projects
+
+//show list of todos
+
+const newProject = (params) => {
+  console.log('creating a new project');
+}
+
+const createProject = () => {
+  console.log('creating project');
+}
+<
