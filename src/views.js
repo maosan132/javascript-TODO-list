@@ -3,8 +3,11 @@ import { addDomElem } from './helper';
 import { myProjects } from './model';
 
 
+<<<<<<< HEAD
 const projectBox = document.getElementById('box'); // get box for painting html inside
 
+=======
+>>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885
 // Render each project
 
 const renderProjectItems = () => {
@@ -20,6 +23,7 @@ const renderProjectItems = () => {
   trashIcon.setAttribute('role', 'button');
   projectsDiv.append(projectName, iconH3);
   iconH3.append(editIcon, trashIcon);
+<<<<<<< HEAD
   //projectsDiv.innerHTML = '';
 
   myProjects.forEach(item => {
@@ -33,6 +37,20 @@ const renderProjectItems = () => {
   });
   projectsDiv.appendChild(fragment);
   console.log('should render fragment now');
+=======
+  projectsDiv.innerHTML = '';
+
+  myProjects.forEach(item => {
+    // console.log('item name', item.name);
+    const clone = template.cloneNode(true);
+    // console.log('cloned item text', clone.querySelector('p').textContent);
+    clone.querySelector('p').textContent = item.name;
+    // console.log('clone:', clone);
+    fragment.appendChild(clone);
+    // console.log(myProjects);
+  });
+  projectsDiv.appendChild(fragment);
+>>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885
 };
 
 /*
@@ -101,5 +119,38 @@ const renderTodoContainer = () => {
 
 */
 
+<<<<<<< HEAD
 
 export { renderProjectsContainer, renderProjectItems, renderTodoContainer, renderTodoitems };
+=======
+// All projects list
+const renderProjectsContainer = () => {
+  const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
+  const projectPara = addDomElem('p', 'class', 'text-center', 'Select a project and start adding your Todo tasks.\n');
+  const projectList = addDomElem('div', 'class', 'mt-3');
+  const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex align-items-center mb-2', 'Projects');
+  const homeBtn = homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'));
+  homeBtn.setAttribute('type', 'button');
+  const projectBox = document.getElementById('box');
+
+  projectBox.append(projectTitle, projectPara, projectList, homeBtn);
+
+  renderProjectItems();
+};
+
+/*
+  <h4 class="py-2">Projects</h4>
+  <p class="text-center">Select a project and start adding your Todo tasks.<br /></p>
+  <div id="project-list" class="mt-3">
+
+  </div>
+  <button class="btn btn-primary btn-lg d-flex align-items-center mb-2" type="button"><i
+      class="fa fa-home"></i>Home</button>
+
+  */
+
+// const renderTodos = () => {}
+
+
+export { renderProjectsContainer, renderProjectItems };
+>>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885

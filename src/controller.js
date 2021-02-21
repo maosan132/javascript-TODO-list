@@ -73,6 +73,7 @@ const createTasks = (projectName) => {
   // captures data from form then push them into task object inside project
   form.addEventListener('submit', e => {
     e.preventDefault();
+<<<<<<< HEAD
 
     // console.log(e.target[0].value);
     // console.log(input.value);
@@ -143,11 +144,25 @@ const listProjects = () => {
 
   return 
 };
+=======
+    // console.log('input was: ', nameInput);
+
+    const projectName = nameInput.value;
+    addProject(projectName);
+  });
+};
+
+// newTaskForm();
+>>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885
 
 const editDefaultProject = () => {
   createTasks('Default');
 };
 
+<<<<<<< HEAD
 export {
   createNewProject, createTasks,
 };
+=======
+export default createNewProject;
+>>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885

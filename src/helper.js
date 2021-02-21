@@ -20,6 +20,7 @@ const setAttributes = (el, attrs) => {
   //   el.setAttribute(key, attrs[key]);
   // }
 };
+<<<<<<< HEAD
 
 const createRadios = (val) => {
   const div = addDomElem('div', 'class', 'form-check', val);
@@ -30,3 +31,7 @@ const createRadios = (val) => {
 
 }
 export { addDomElem, setAttributes, createRadios };
+=======
+
+export { addDomElem, setAttributes };
+>>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885
