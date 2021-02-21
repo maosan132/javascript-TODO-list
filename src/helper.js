@@ -21,4 +21,12 @@ const setAttributes = (el, attrs) => {
   // }
 };
 
-export { addDomElem, setAttributes };
+const createRadios = (val) => {
+  const div = addDomElem('div', 'class', 'form-check', val);
+  const input = addDomElem('input', 'class', 'form-check-input');
+  setAttributes(input, { type: 'radio', name: 'choice', value: val });
+  div.appendChild(input);
+  return div;
+
+}
+export { addDomElem, setAttributes, createRadios };

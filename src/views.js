@@ -3,6 +3,8 @@ import { addDomElem } from './helper';
 import { myProjects } from './model';
 
 
+const projectBox = document.getElementById('box'); // get box for painting html inside
+
 // Render each project
 
 const renderProjectItems = () => {
@@ -18,18 +20,19 @@ const renderProjectItems = () => {
   trashIcon.setAttribute('role', 'button');
   projectsDiv.append(projectName, iconH3);
   iconH3.append(editIcon, trashIcon);
-  projectsDiv.innerHTML = '';
+  //projectsDiv.innerHTML = '';
 
   myProjects.forEach(item => {
-    // console.log('item name', item.name);
+    console.log('item name', item.name);
     const clone = template.cloneNode(true);
     // console.log('cloned item text', clone.querySelector('p').textContent);
     clone.querySelector('p').textContent = item.name;
-    // console.log('clone:', clone);
+    console.log('clone:', clone);
     fragment.appendChild(clone);
-    // console.log(myProjects);
+    console.log(fragment);
   });
   projectsDiv.appendChild(fragment);
+  console.log('should render fragment now');
 };
 
 /*
@@ -42,20 +45,8 @@ const renderProjectItems = () => {
 */
 // project div delete project and edit buttons functions but in the controller
 
-/*
 
-
-<div id="task-list" class="mt-3">
-  <div role="alert" class="alert alert-warning d-flex justify-content-between align-items-center">
-    <span>Wash dishes</span>
-    <h3 class="m-0"><i class="fa fa-check-circle text-success mr-2" role="button"></i><i
-        class="fa fa-minus-circle text-danger" role="button"></i></h3>
-  </div>
-</div>
-
-*/
-
-// All projects list
+// renders the projects container
 const renderProjectsContainer = () => {
   const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
   const projectPara = addDomElem('p', 'class', 'text-center', 'Select a project and start adding your Todo tasks.\n');
@@ -63,11 +54,11 @@ const renderProjectsContainer = () => {
   const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex align-items-center mb-2', 'Projects');
   const homeBtn = homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'));
   homeBtn.setAttribute('type', 'button');
-  const projectBox = document.getElementById('box');
 
   projectBox.append(projectTitle, projectPara, projectList, homeBtn);
 
   renderProjectItems();
+
 };
 
 /*
@@ -81,7 +72,34 @@ const renderProjectsContainer = () => {
 
   */
 
-// const renderTodos = () => {}
+const renderTodoItems = () => {
+  const renderTodoitems = () => {
+  
+  }
+};
 
 
-export { renderProjectsContainer, renderProjectItems };
+// renders the div containing of each task to do
+
+const renderTodoContainer = () => {
+
+  // bring project name here
+  const title = addDomElem('h4', 'class', 'py-2', 'Todo List - project name');
+  const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding your tasks for this project\n');
+
+  renderTodoItems();
+};
+
+/*
+<div id="task-list" class="mt-3">
+  <div role="alert" class="alert alert-warning d-flex justify-content-between align-items-center">
+    <span>Wash dishes</span>
+    <h3 class="m-0"><i class="fa fa-check-circle text-success mr-2" role="button"></i><i
+        class="fa fa-minus-circle text-danger" role="button"></i></h3>
+  </div>
+</div> 
+
+*/
+
+
+export { renderProjectsContainer, renderProjectItems, renderTodoContainer, renderTodoitems };

@@ -11,7 +11,7 @@
     crossorigin="anonymous" />
   <style>
     body {
-      background-color:rgb(238, 215, 180);
+      background-color: rgb(238, 215, 180);
     }
 
     #interaction {}
@@ -40,12 +40,12 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-        <div id="box"></div>
+          <div id="box"></div>
 
 
           <div class="d-inline-block flex-wrap py-4" id="menu">
             <button class="btn btn-primary btn-block btn-lg border rounded" id="new" type="button"
-              style="height: 68px;text-align: center;">New Project</button>
+              style="height: 68px;text-align: center;">New Projects</button>
             <button class="btn btn-info btn-block btn-lg border rounded" id="default" type="button"
               style="height: 68px;text-align: center;">Default Project</button>
             <button class="btn btn-success btn-block btn-lg border rounded" id="projects" type="button"
@@ -64,7 +64,6 @@
       <p class="m-0">task # 1</p>
       <h3 class="m-0">
         <i class="fas fa-check-circle text-success" role="button" title="Complete this task"></i>
-        <!-- <i class="fas fa-undo-alt" role="button" title="Reload this task"></i> -->
         <i class="fas fa-minus-circle text-danger" role="button" title="Delete this task"></i>
       </h3>
     </div>
@@ -72,7 +71,7 @@
 
 
   <template id="template-project">
-    <div class="alert alert-primary d-flex justify-content-between align-items-center" >
+    <div class="alert alert-primary d-flex justify-content-between align-items-center">
       <p class="m-0"></p>
       <h3 class="m-0"><i class="fa fa-pencil-square text-success mr-2" role="button"></i><i
           class="fa fa-times-circle text-danger" role="button"></i></h3>
@@ -83,3 +82,26 @@
 </body>
 
 </html>
+
+<h4 class="py-2">Project: Do Breakfast</h4><button class="btn btn-info btn-lg mb-4"
+  type="button">Add-TODO-list<br /></button>
+<form class="pb-4 border p-2" id="todo-form" name="form">
+  <div class="form-group d-flex"><label class="d-none">Add a task:</label>
+    <input type="text" class="form-control justify-content-center" placeholder="Add a task here" id="input" autofocus />
+  </div>
+  <div class="form-group d-flex"><label class="d-none">Task&#39;s Description:</label>
+    <textarea class="form-control" placeholder="Task&#39;s Description:" name="textarea">
+    </textarea>
+  </div>
+  <div class="form-group d-flex align-items-center"><label class="col-4 mb-0">Due Date:</label>
+    <input class="form-control" type="date" />
+  </div>
+
+  <div class="form-group d-flex justify-content-around"><label>Priority:</label>
+    <div class="form-check"><input type="radio" class="form-check-input" name="choice" value="High" />High</div>
+    <div class="form-check"><input type="radio" class="form-check-input" name="choice" value="Normal" />Normal</div>
+    <div class="form-check"><input type="radio" class="form-check-input" name="choice" value="Low" />Low</div>
+
+  </div>
+  <button class="btn btn-primary btn-block btn-lg" type="submit">Add it!</button>
+</form>

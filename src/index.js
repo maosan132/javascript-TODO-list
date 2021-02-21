@@ -1,4 +1,4 @@
-import * as loader from './controller';
+import {createNewProject} from './controller';
 
 const menu = document.getElementById('menu');
 
@@ -9,15 +9,15 @@ const selectActions = e => {
 
   switch (menuChoice) {
     case 'new':
-      // console.log('clicked on', 'new');
-      loader.createNewProject();
+      console.log('clicked on', 'new');
+      createNewProject();
       break;
     case 'default':
-      // console.log('clicked on', 'default');
+      console.log('clicked on', 'default');
       // loader.editDefaultProject();
       break;
     case 'projects':
-      // console.log('clicked on', 'projects');
+      console.log('clicked on', 'projects');
       // loader.RenderAllProjects()
       break;
     default:
