@@ -1,6 +1,6 @@
 
 import { addDomElem } from './helper';
-import { myProjects } from './model';
+import { myProjects } from './task-model';
 
 
 <<<<<<< HEAD

@@ -1,4 +1,5 @@
-import { Project, myProjects, Task } from './model';
+import { Project, myProjects } from './project-model';
+import { Task } from './task-model';
 import { newProjectForm, newTodoForm } from './forms';
 import { renderProjectItems, renderProjectsContainer, renderTodos } from './views';
 
@@ -49,12 +50,10 @@ const createNewProject = () => {
 
 // Finds specific project to work with
 const findProject = (title) => {
-  let result;
-  myProjects.find(item => {
-    if (item.name === title) return myProjects.indexOf(item);
-  });
+  myProjects.find(item => item.name === title);
 };
 
+// creates task dom elements like title, explanation and form, then retrieve data and push it into tasks and myProjects
 const createTasks = (projectName) => {
   const form = document.getElementById('todo-form');
   const input = document.getElementById('input');
@@ -65,15 +64,12 @@ const createTasks = (projectName) => {
 
   // idea: build tasks inside named project
 
-  // get project name
-  const thisProject = myProject[indexof()]
   // displays just the todo form
   newTodoForm();
 
   // captures data from form then push them into task object inside project
   form.addEventListener('submit', e => {
     e.preventDefault();
-<<<<<<< HEAD
 
     // console.log(e.target[0].value);
     // console.log(input.value);
@@ -117,8 +113,8 @@ const createTasks = (projectName) => {
     // push task obj into taskList prop of Prj:
     console.log(tasks);
 
-    const workingProject = findProject(projectName);
-
+    const workingProjectIndex = myProjects.indexOf(findProject(projectName));
+ 
     myProjects.taskList.push(task);
 
     tasks[task.id] = task;
@@ -144,25 +140,11 @@ const listProjects = () => {
 
   return 
 };
-=======
-    // console.log('input was: ', nameInput);
-
-    const projectName = nameInput.value;
-    addProject(projectName);
-  });
-};
-
-// newTaskForm();
->>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885
 
 const editDefaultProject = () => {
   createTasks('Default');
 };
 
-<<<<<<< HEAD
 export {
   createNewProject, createTasks,
 };
-=======
-export default createNewProject;
->>>>>>> c3d5fe66376c7bcd0d9b1ad7abbb0c146829b885
