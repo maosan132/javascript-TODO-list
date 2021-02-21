@@ -1,63 +1,36 @@
 
-import {addDomElem} from './helper';
-import {myProjects} from './model';
+import { addDomElem } from './helper';
+import { myProjects } from './model';
 
 
-// All projects list
-const renderProjectsContainer = () => {
-    const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
-    const projectPara = addDomElem('p', 'class', 'text-center', 'Select a project and start adding your Todo tasks.\n');
-    const projectList = addDomElem('div', 'class', 'mt-3');
-    const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex align-items-center mb-2', 'Projects');
-    const homeBtn= homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'))
-    homeBtn.setAttribute('type', 'button');
-    const projectBox = document.getElementById('box');
-
-    projectBox.append(projectTitle, projectPara, projectList, homeBtn);
-
-    renderProjectItems();
-}
-
-
-/*
-<h4 class="py-2">Projects</h4>
-<p class="text-center">Select a project and start adding your Todo tasks.<br /></p>
-<div id="project-list" class="mt-3">
-
-</div>
-<button class="btn btn-primary btn-lg d-flex align-items-center mb-2" type="button"><i
-    class="fa fa-home"></i> Home</button>
-
-*/
- 
 // Render each project
 
 const renderProjectItems = () => {
-    const template = document.getElementById('template-project').content;
-    const fragment = document.createDocumentFragment();
-    const projectsDiv = addDomElem('div', 'class', 'alert alert-primary d-flex justify-content-between align-items-center');
-    const projectName = addDomElem('p', 'class', 'm-0')
-    const iconH3 = addDomElem('h3', 'class', 'm-0');
-    const editIcon = addDomElem('i', 'class', 'fa fa-pencil-square text-success mr-2');
-    const trashIcon = addDomElem('i', 'class', 'fa fa-times-circle text-danger');
-    
-    editIcon.setAttribute('role', 'button');
-    trashIcon.setAttribute('role', 'button');
-    projectsDiv.append(projectName, iconH3);
-    iconH3.append(editIcon, trashIcon);
-    projectsDiv.innerHTML = '';
+  const template = document.getElementById('template-project').content;
+  const fragment = document.createDocumentFragment();
+  const projectsDiv = addDomElem('div', 'class', 'alert alert-primary d-flex justify-content-between align-items-center');
+  const projectName = addDomElem('p', 'class', 'm-0');
+  const iconH3 = addDomElem('h3', 'class', 'm-0');
+  const editIcon = addDomElem('i', 'class', 'fa fa-pencil-square text-success mr-2');
+  const trashIcon = addDomElem('i', 'class', 'fa fa-times-circle text-danger');
 
-    myProjects.forEach((item) => {
-        console.log('item name', item.name)
-        const clone = template.cloneNode(true);
-        console.log('cloned item text', clone.querySelector('p').textContent)
-        clone.querySelector('p').textContent = item.name;
-        console.log('clone:', clone);
-        fragment.appendChild(clone);
-        console.log(myProjects)
-    })
-    projectsDiv.appendChild(fragment);
-}
+  editIcon.setAttribute('role', 'button');
+  trashIcon.setAttribute('role', 'button');
+  projectsDiv.append(projectName, iconH3);
+  iconH3.append(editIcon, trashIcon);
+  projectsDiv.innerHTML = '';
+
+  myProjects.forEach(item => {
+    // console.log('item name', item.name);
+    const clone = template.cloneNode(true);
+    // console.log('cloned item text', clone.querySelector('p').textContent);
+    clone.querySelector('p').textContent = item.name;
+    // console.log('clone:', clone);
+    fragment.appendChild(clone);
+    // console.log(myProjects);
+  });
+  projectsDiv.appendChild(fragment);
+};
 
 /*
 
@@ -81,8 +54,34 @@ const renderProjectItems = () => {
 </div>
 
 */
-const renderTodos = () => {
 
-}
+// All projects list
+const renderProjectsContainer = () => {
+  const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
+  const projectPara = addDomElem('p', 'class', 'text-center', 'Select a project and start adding your Todo tasks.\n');
+  const projectList = addDomElem('div', 'class', 'mt-3');
+  const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex align-items-center mb-2', 'Projects');
+  const homeBtn = homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'));
+  homeBtn.setAttribute('type', 'button');
+  const projectBox = document.getElementById('box');
 
-export {renderProjectsContainer, renderProjectItems};
+  projectBox.append(projectTitle, projectPara, projectList, homeBtn);
+
+  renderProjectItems();
+};
+
+/*
+  <h4 class="py-2">Projects</h4>
+  <p class="text-center">Select a project and start adding your Todo tasks.<br /></p>
+  <div id="project-list" class="mt-3">
+
+  </div>
+  <button class="btn btn-primary btn-lg d-flex align-items-center mb-2" type="button"><i
+      class="fa fa-home"></i>Home</button>
+
+  */
+
+// const renderTodos = () => {}
+
+
+export { renderProjectsContainer, renderProjectItems };
