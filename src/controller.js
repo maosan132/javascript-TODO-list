@@ -1,7 +1,9 @@
 import { Project, myProjects } from './project-model';
 import { Task } from './task-model';
 import { newProjectForm, newTodoForm } from './forms';
-import { renderProjectItems, renderProjectsContainer, renderTodos } from './views';
+import {
+  renderProjectItems, renderProjectsContainer, renderTodoItems, renderTodoContainer, projectDiv,
+} from './views';
 
 // const form = document.forms[0];
 
@@ -17,7 +19,7 @@ const addProject = (elem) => {
 
   // open form for creating tasks
 
-  //renderProjectItems();
+  // renderProjectItems();
 };
 
 const validateProjectName = (val) => {
@@ -48,25 +50,25 @@ const createNewProject = () => {
 
 // newTaskForm();
 
-// Finds specific project to work with
+// Finds specific project to work with when inserting todo lists
 const findProject = (title) => {
   myProjects.find(item => item.name === title);
 };
 
-// creates task dom elements like title, explanation and form, then retrieve data and push it into tasks and myProjects
+// Captures task form values and push it as obj into prop taskList of specific myProjects item
 const createTasks = (projectName) => {
   const form = document.getElementById('todo-form');
   const input = document.getElementById('input');
   const textarea = document.querySelector('textarea');
   const deadline = document.querySelector('input[type=date]');
   const priority = document.querySelectorAll('input[type=radio]');
-  //const taskList = document.getElementById('task-list');
+  // const taskList = document.getElementById('task-list');
 
   // idea: build tasks inside named project
 
   // displays just the todo form
   newTodoForm();
-
+  taskDiv.innerHTML = ''; // cleans container so it avoids repeating list of tasks
   // captures data from form then push them into task object inside project
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -101,44 +103,33 @@ const createTasks = (projectName) => {
       false,
     );
 
-    // const task = {
-    //   id: Date.now(),
-    //   title: input.value,
-    //   description: textarea.value,
-    //   date: deadline.value,
-    //   priority: selectedValue,
-    //   status: false,
-    // };
-
     // push task obj into taskList prop of Prj:
     console.log(tasks);
 
-    const workingProjectIndex = myProjects.indexOf(findProject(projectName));
- 
-    myProjects.taskList.push(task);
+    const indexOfWorkingProject = myProjects.indexOf(findProject(projectName));
 
-    tasks[task.id] = task;
-    // tasks[task.id] = {...task}
+    myProjects[indexOfWorkingProject].taskList.push(task);
 
-    // console.log('click');
     form.reset();
+
     input.focus();
 
-    renderTasks();
+
+    renderTodoItems();
   });
 
   // renders the divs of each tasks
 
   // continue until end list of items, ie hit back/home button
 
-  // hide from and go to home page
+  // hide form and go to home page
+  form.style.display = 'none';
 
-  return 
 };
 
 const listProjects = () => {
 
-  return 
+  return
 };
 
 const editDefaultProject = () => {
