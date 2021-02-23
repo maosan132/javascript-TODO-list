@@ -2,7 +2,7 @@ import { Project, myProjects } from './project-model';
 import { Task } from './task-model';
 import { newProjectForm, newTodoForm } from './forms';
 import {
-  renderProjectItems, renderProjectsContainer, renderTodoItems, renderTodoContainer, projectDiv,
+  renderProjectItems, renderTodoItems, renderTodoContainer, taskListDiv,
 } from './views';
 
 // const form = document.forms[0];
@@ -10,65 +10,41 @@ import {
 
 // renderProjectsContainer();
 
-
-const addProject = (elem) => {
-  const project = new Project(elem);
-  myProjects.push(project);
-  console.log('projects', myProjects);
-  // form.style.display = 'none';
-
-  // open form for creating tasks
-
-  // renderProjectItems();
-};
-
-const validateProjectName = (val) => {
-  if (MyProjects.includes(val)) {
+const validateProjectName = (nameInput) => {
+  const checkValue = myProjects.includes(nameInput.value);
+  if (checkValue) {
     nameInput.style.color = 'red';
-    nameInput.value = `${val} exists, choose another project name `;
-    const result = true;
+    nameInput.value = `${nameInput.value} exists, choose another project name `;
+    return true;
   }
-  return result;
+  return false;
 };
-
-const createNewProject = () => {
-  newProjectForm(); // puts the form inside box
-
-  const submitButton = document.querySelector('button');
-
-  submitButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    const nameInput = document.querySelector('input.form-control');
-
-    if (!validateProjectName(nameInput.value)) {
-      // console.log('input was: ', nameInput.value);
-      const projectName = nameInput.value;
-      addProject(projectName);
-    }
-  });
-};
-
-// newTaskForm();
 
 // Finds specific project to work with when inserting todo lists
 const findProject = (title) => {
   myProjects.find(item => item.name === title);
 };
 
+const addTaskToProject = (t, index) => {
+  myProjects[index].taskList.push(t);
+  console.log('project updated:', myProjects[index].name);
+
+  // form.style.display = 'none'; // This would remove form when done button is hit
+
+  // open form for creating tasks  // After new task button
+};
+
 // Captures task form values and push it as obj into prop taskList of specific myProjects item
 const createTasks = (projectName) => {
+  renderTodoContainer(projectName);
+  newTodoForm();
+
   const form = document.getElementById('todo-form');
   const input = document.getElementById('input');
   const textarea = document.querySelector('textarea');
   const deadline = document.querySelector('input[type=date]');
   const priority = document.querySelectorAll('input[type=radio]');
-  // const taskList = document.getElementById('task-list');
 
-  // idea: build tasks inside named project
-
-  // displays just the todo form
-  newTodoForm();
-  taskDiv.innerHTML = ''; // cleans container so it avoids repeating list of tasks
   // captures data from form then push them into task object inside project
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -103,39 +79,85 @@ const createTasks = (projectName) => {
       false,
     );
 
-    // push task obj into taskList prop of Prj:
-    console.log(tasks);
-
+    // finds out what Project has this project name
     const indexOfWorkingProject = myProjects.indexOf(findProject(projectName));
 
-    myProjects[indexOfWorkingProject].taskList.push(task);
+    addTaskToProject(task, indexOfWorkingProject);
 
     form.reset();
 
     input.focus();
 
-
-    renderTodoItems();
+    // Sends task to renderer
+    taskListDiv.appendChild(renderTodoItems(indexOfWorkingProject));
   });
-
-  // renders the divs of each tasks
-
-  // continue until end list of items, ie hit back/home button
-
-  // hide form and go to home page
-  form.style.display = 'none';
-
 };
 
-const listProjects = () => {
+const addProject = (p) => {
+  const project = new Project(p);
+  myProjects.push(project);
+  console.log('projects', myProjects);
 
-  return
+  // form.style.display = 'none';
+
+  // open form for creating tasks
+
+  // Go to a function with a button to create another project, *later*
+
+  // renderProjectItems();  // not now
+
+  // Go to add tasks to this project !!!! *now*
+  renderTodoContainer(p);
+  createTasks(p);
 };
 
+// *****First menu option*****
+const createNewProject = () => {
+  newProjectForm(); // puts the form inside box
+
+  const submitButton = document.querySelector('button');
+
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const nameInput = document.querySelector('input.form-control');
+
+    if (!validateProjectName(nameInput)) {
+      // console.log('input was: ', nameInput.value);
+      const projectName = nameInput.value;
+      addProject(projectName);
+    }
+  });
+};
+
+// *****Second menu option*****
 const editDefaultProject = () => {
   createTasks('Default');
 };
 
+// *****Third menu option*****
+const showProjectItems = () => {
+  renderProjectItems();
+};
+
+// buttons delete and finished of each task item
+const taskBtnsAction = (e) => {
+  if (e.target.classList.contains('fa-check-circle')) {
+    tasks[e.target.dataset.id].status = true;
+    renderTasks()
+  } else if (e.target.classList.contains('fa-minus-circle')) {
+    delete tasks[e.target.dataset.id];
+    renderTasks();
+  } else if (e.target.classList.contains('fa-undo-alt')) {
+    tasks[e.target.dataset.id].status = false;
+    renderTasks();
+  }
+  e.stopPropagation();
+};
+
+taskList.addEventListener('click', (e) => {
+  taskBtnsAction(e);
+});
+
 export {
-  createNewProject, createTasks,
+  createNewProject, editDefaultProject, showProjectItems,
 };
