@@ -22,11 +22,12 @@ const validateProjectName = (nameInput) => {
 
 // Finds specific project to work with when inserting todo lists
 const findProject = (title) => {
-  myProjects.find(item => item.name === title);
+  return myProjects.find(item => item.name === title);
 };
 
 const addTaskToProject = (t, index) => {
-  myProjects[index].taskList.push(t);
+  // myProjects[index].taskList.push(t);
+  myProjects[index].taskList[t.id] = t; // With task.id as property of task object
   console.log('project updated:', myProjects[index].name);
 
   // form.style.display = 'none'; // This would remove form when done button is hit
@@ -141,20 +142,22 @@ const showProjectItems = () => {
 
 // buttons delete and finished of each task item
 const taskBtnsAction = (e) => {
+  const projectTask = document.getElementsByTagName('a')[0].id; // Name of the project owner of tasks
   if (e.target.classList.contains('fa-check-circle')) {
-    tasks[e.target.dataset.id].status = true;
-    renderTasks()
+    const iconTarget = ;
+    myProjects[e.target.id].status = true;
+    renderTasks();
   } else if (e.target.classList.contains('fa-minus-circle')) {
-    delete tasks[e.target.dataset.id];
+    delete tasks[e.target.id];
     renderTasks();
   } else if (e.target.classList.contains('fa-undo-alt')) {
-    tasks[e.target.dataset.id].status = false;
+    tasks[e.target.id].status = false;
     renderTasks();
   }
   e.stopPropagation();
 };
 
-taskList.addEventListener('click', (e) => {
+taskListDiv.addEventListener('click', (e) => {
   taskBtnsAction(e);
 });
 

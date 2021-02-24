@@ -56,6 +56,7 @@ const renderProjectsContainer = () => {
   projectsListDiv.appendChild(renderProjectItems());
 };
 
+// Renders every task item inside projectsListDiv
 const renderTodoItems = (index) => {
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
@@ -104,8 +105,8 @@ const renderTodoItems = (index) => {
     clone.querySelectorAll('span')[1].textContent = task.description;
     clone.getElementById('date').textContent = task.date;
 
-    clone.querySelector('.fas').dataset.id = task.id;
-    clone.querySelectorAll('.fas')[1].dataset.id = task.id;
+    clone.querySelector('.fas').id = task.id;
+    clone.querySelectorAll('.fas')[1].id = task.id;
     fragment.appendChild(clone);
   });
   taskListDiv.appendChild(fragment);
@@ -114,11 +115,12 @@ const renderTodoItems = (index) => {
 // renders the div containing of each task to do
 const renderTodoContainer = (pName) => {
   // bring project name here
-  const title = addDomElem('h4', 'class', 'py-2', 'Todo List - project name');
-  const paragraph = addDomElem('p', 'class', 'text-center', `Add tasks for ${pName} project\n`);
+  const title = addDomElem('h4', 'class', 'py-2', `Todo List - ${pName} project`);
+  const taskIdentifier = addDomElem('a', 'id', `${pName}`, '');
+  const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding some tasks:\n');
 
   box.innerHTML = '';
-  box.append(title, paragraph, taskListDiv);
+  box.append(title, taskIdentifier, paragraph, taskListDiv);
 };
 
 export {
