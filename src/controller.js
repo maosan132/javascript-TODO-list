@@ -22,7 +22,7 @@ const validateProjectName = (nameInput) => {
 
 // Finds specific project to work with when inserting todo lists
 const findProject = (title) => {
-  return myProjects.find(item => item.name === title);
+  return myProjects.find(p => p.name === title);
 };
 
 const addTaskToProject = (t, index) => {
@@ -141,24 +141,26 @@ const showProjectItems = () => {
 };
 
 // buttons delete and finished of each task item
-const taskBtnsAction = (e) => {
-  const projectTask = document.getElementsByTagName('a')[0].id; // Name of the project owner of tasks
+const taskEditActions = (e) => {
+  const currentTaskPrj = document.getElementsByTagName('a')[0].id;
+  const prjIndex = myProjects.indexOf(findProject(currentTaskPrj));
+  // Arbitrary a tag. Name of the project owner of current tasks
   if (e.target.classList.contains('fa-check-circle')) {
-    const iconTarget = ;
-    myProjects[e.target.id].status = true;
-    renderTasks();
+    myProjects[prjIndex].taskList[e.target.id] = true;
+    // myProjects[e.target.id].status = true;
+    renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-minus-circle')) {
-    delete tasks[e.target.id];
-    renderTasks();
+    delete myProjects[prjIndex].taskList[e.target.id];
+    renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-undo-alt')) {
-    tasks[e.target.id].status = false;
-    renderTasks();
+    myProjects[prjIndex].taskList[e.target.id].status = false;
+    renderTodoItems(prjIndex);
   }
   e.stopPropagation();
 };
 
 taskListDiv.addEventListener('click', (e) => {
-  taskBtnsAction(e);
+  taskEditActions(e);
 });
 
 export {

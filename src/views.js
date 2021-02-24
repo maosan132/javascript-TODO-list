@@ -1,4 +1,3 @@
-
 import { addDomElem } from './helper';
 import { myProjects } from './project-model';
 import { box } from './forms';
@@ -95,9 +94,9 @@ const renderTodoItems = (index) => {
       clone.querySelector('.alert').classList.replace('alert-primary', 'alert-danger');
     }
 
-    if (task.priority == 'High') {
+    if (task.priority === 'High') {
       clone.querySelector('.fa-battery-half').classList.replace('fa-battery-half', 'fa-battery-full');
-    } else if (task.priority == 'Low') {
+    } else if (task.priority === 'Low') {
       clone.querySelector('.fa-battery-half').classList.replace('fa-battery-half', 'fa-battery-empty');
     }
 

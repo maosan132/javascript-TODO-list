@@ -3,11 +3,11 @@ function Project(name, taskList = []) {
   this.taskList = taskList;
 }
 
-// Create methods of Project: Delete project button, edit button, push new project, getProyectbyname, validateProjectName, 
+// Create methods of Project: Delete, edit, create new, getProjectByName, validateProjectName,
 
-Project.prototype.edit = function() {
-  console.log('edit project:', this.name);
-};
+// Project.prototype.edit = function () {
+//   console.log('edit project:', this.name);
+// };
 
 
 // class Project {
