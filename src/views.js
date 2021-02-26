@@ -2,12 +2,12 @@ import { addDomElem, debugColor } from './helper';
 import { myProjects } from './project-model';
 import { box } from './forms';
 
-// const projectBox = document.getElementById('box'); // get box for painting html inside
 const taskListDiv = addDomElem('div', 'class', 'mt-3');
 const projectsListDiv = addDomElem('div', 'class', 'mt-3'); // Inside this the boxes with every project
 
 // Render each project *third menu button*
 const renderProjectItems = () => {
+  console.log('render p i');
   const template = document.getElementById('template-project').content;
   const fragment = document.createDocumentFragment();
   const projectDiv = addDomElem('div', 'class', 'alert alert-primary d-flex align-items-center');
@@ -22,8 +22,12 @@ const renderProjectItems = () => {
   projectDiv.append(projectName, iconH3);
   iconH3.append(editIcon, trashIcon);
 
-  projectDiv.innerHTML = ''; // cleans container so it avoids repeating list of projects
+  // projectDiv.innerHTML = ''; // cleans container so it avoids repeating list of projects
+
+  projectsListDiv.innerHTML = '';
+  console.log('before iterate prjs', myProjects);
   myProjects.forEach(item => {
+    console.log('the prroject number...');
     console.log('item name', item.name);
     const clone = template.cloneNode(true);
     // console.log('cloned item text', clone.querySelector('p').textContent);
@@ -33,8 +37,9 @@ const renderProjectItems = () => {
     console.log(fragment);
   });
 
+
   console.log('should render fragment now');
-  return projectDiv.appendChild(fragment);
+  return projectsListDiv.appendChild(fragment);
 };
 
 // project div delete project and edit buttons functions but in the controller
@@ -43,21 +48,19 @@ const renderProjectItems = () => {
 const renderProjectsContainer = () => {
   const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
   const projectPara = addDomElem('p', 'class', 'text-center');
-  projectPara.textContent = 'Select a project and start adding your Todo tasks.\n';
+  projectPara.textContent = 'Select a project and start adding your Todo tasks:\n';
   const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex mb-2');
   homeBtnTemp.classList.add('align-items-center');
   homeBtnTemp.textContent = 'Projects';
   const homeBtn = homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'));
   homeBtn.setAttribute('type', 'button');
 
+  box.innerHTML = '';
   box.append(projectTitle, projectPara, projectsListDiv, homeBtn);
-
-  projectsListDiv.appendChild(renderProjectItems());
 };
 
 // Renders every task item inside projectsListDiv
 const renderTodoItems = (index) => {
-  console.log('inside rendertodoItems');
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
   const taskDiv = addDomElem('div', 'class', 'alert alert-warning align-items-center');
@@ -96,8 +99,6 @@ const renderTodoItems = (index) => {
   // myProjects[index].taskList.forEach(task => {
   Object.entries(myProjects[index].taskList).forEach(([i, task]) => {
     const clone = template.cloneNode(true);
-    debugColor('b');
-    console.log('task status? ' , task.status);
     if (task.status) {
       clone.querySelector('.alert').classList.replace('alert-warning', 'alert-primary');
       clone.querySelector('.fa-check-circle ').classList.replace('fa-check-circle', 'fa-undo-alt');

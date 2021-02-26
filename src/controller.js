@@ -3,7 +3,7 @@ import { Task } from './task-model';
 // import { cleanBox } from './helper';
 import { newProjectForm, newTodoForm } from './forms';
 import {
-  renderProjectItems, renderTodoItems, renderTodoContainer, taskListDiv,
+  renderProjectsContainer, renderTodoItems, renderTodoContainer, taskListDiv, renderProjectItems,
 } from './views';
 import { debugColor } from './helper';
 
@@ -31,7 +31,8 @@ const addTaskToProject = (t, index) => {
   // myProjects[index].taskList.push(t);
   myProjects[index].taskList[t.id] = t; // With task.id as property of task object
   console.log('project updated:', myProjects[index].name);
-
+  console.log(myProjects[index].taskList);
+  console.log('all; ', myProjects);
   // form.style.display = 'none'; // This would remove form when done button is hit
 
   // open form for creating tasks  // After new task button
@@ -73,14 +74,12 @@ const createTasks = (projectName) => {
       false,
     );
 
-    console.log('projects updated w task', myProjects);
     // finds out what Project has this project name
     const indexOfWorkingProject = myProjects.indexOf(findProject(projectName));
 
     addTaskToProject(task, indexOfWorkingProject);
 
-    form.reset();
-
+    form.reset()
     input.focus();
 
     // Sends task to renderer
@@ -125,32 +124,30 @@ const createNewProject = () => {
 
 // *****Second menu option*****
 const editDefaultProject = () => {
+  renderTodoContainer('Default');
   createTasks('Default');
 };
 
 // *****Third menu option*****
 const showProjectItems = () => {
+  renderProjectsContainer();
   renderProjectItems();
 };
 
 // buttons delete and status of each task item
 const taskEditActions = (e) => {
-  console.log('hello', e.target);
   const currentTaskPrj = document.getElementsByTagName('a')[0].id; // Gets name of current prj
   const prjIndex = myProjects.indexOf(findProject(currentTaskPrj));
 
   if (e.target.classList.contains('fa-check-circle')) {
     myProjects[prjIndex].taskList[e.target.id].status = true;
     console.log('status', myProjects[prjIndex].taskList[e.target.id].status);
-    debugColor('r');
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-minus-circle')) {
     delete myProjects[prjIndex].taskList[e.target.id];
-    debugColor('g');
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-undo-alt')) {
     myProjects[prjIndex].taskList[e.target.id].status = false;
-    debugColor('b');
     renderTodoItems(prjIndex);
   }
   e.stopPropagation();

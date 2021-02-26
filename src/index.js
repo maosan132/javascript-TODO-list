@@ -11,15 +11,12 @@ const selectActions = e => {
 
   switch (menuChoice) {
     case 'new':
-      console.log('clicked on ', 'new');
       createNewProject();
       break;
     case 'default':
-      console.log('clicked on ', 'default');
       editDefaultProject();
       break;
     case 'projects':
-      console.log('clicked on ', 'projects');
       showProjectItems();
       break;
     default:

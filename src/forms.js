@@ -43,7 +43,7 @@ const newProjectForm = () => {
 };
 
 const newTodoForm = () => {
-  const taskFormTitle = addDomElem('h4', 'class', 'py-2', 'New Task');
+  const taskFormTitle = addDomElem('h5', 'class', 'py-2 text-danger', 'New Task');
   const taskForm = addDomElem('form', 'class', 'pb-4 border p-2');
   taskForm.id = 'todo-form';
   const taskFormGroup1 = addDomElem('div', 'class', 'form-group d-flex');
