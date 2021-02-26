@@ -34,6 +34,16 @@ const cleanContainer = (i) => {
   console.log('cleaned box');
 };
 
+const debugColor = (color) => { // delete this method as soon prj is ready
+  if (color === 'r') {
+    console.log(`%c +++ check point +++`,'color: red');
+  } else if (color === 'b') {
+    console.log(`%c +++ check point +++`,'color: blue');
+  } else {
+    console.log(`%c +++ check point +++`,'color: green');
+  }
+};
+
 export {
-  addDomElem, setAttributes, createRadios, cleanContainer,
+  addDomElem, setAttributes, createRadios, cleanContainer, debugColor
 };

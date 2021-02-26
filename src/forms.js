@@ -50,12 +50,12 @@ const newTodoForm = () => {
   const taskFormLabel1 = addDomElem('label', 'class', 'd-none', 'Name:');
   const taskFormInput = addDomElem('input', 'class', 'form-control justify-content-center');
   setAttributes(taskFormInput, {
-    type: 'text', placeholder: 'Name of task here', required: '', autofocus: '', id: 'input',
+    type: 'text', placeholder: 'Name of task', required: '', autofocus: '', id: 'input',
   });
   const taskFormGroup2 = addDomElem('div', 'class', 'form-group d-flex');
   const taskFormLabel2 = addDomElem('label', 'class', 'd-none', 'Description:');
   const textArea = addDomElem('textarea', 'class', 'form-control');
-  setAttributes(textArea, { placeholder: 'Name of task here', required: '' });
+  setAttributes(textArea, { placeholder: 'Description here', required: '' });
   const taskFormGroup3 = addDomElem('div', 'class', 'form-group d-flex align-items-center');//
   const taskFormLabel3 = addDomElem('label', 'class', 'col-4 mb-0', 'Due Date:');
   const dateInput = addDomElem('input', 'class', 'form-control');

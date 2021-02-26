@@ -1,4 +1,4 @@
-import { addDomElem } from './helper';
+import { addDomElem, debugColor } from './helper';
 import { myProjects } from './project-model';
 import { box } from './forms';
 
@@ -83,14 +83,12 @@ const renderTodoItems = (index) => {
 
   taskDiv.innerHTML = '';
 
-  console.log(`%c here`,'color: green');
   // loop the array of tasks
-  console.log('any myProjects here?', myProjects);
+
   // myProjects[index].taskList.forEach(task => {
   Object.entries(myProjects[index].taskList).forEach(([i, task]) => {
     const clone = template.cloneNode(true);
 
-    console.log(`%c here`,'color: red');
     if (task.status) {
       clone.querySelector('.alert').classList.replace('alert-warning', 'alert-primary');
       clone.querySelector('.fa-check-circle ').classList.replace('fa-check-circle', 'fa-undo-alt');
@@ -114,8 +112,8 @@ const renderTodoItems = (index) => {
     fragment.appendChild(clone);
   });
   taskListDiv.appendChild(fragment);
-  
-  console.log(`%c here`,'color: yellow');
+  debugColor('g');
+
 };
 
 // renders the div containing of each task to do
