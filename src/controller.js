@@ -7,11 +7,6 @@ import {
 } from './views';
 import { debugColor } from './helper';
 
-// const form = document.forms[0];
-
-
-// renderProjectsContainer();
-
 const validateProjectName = (nameInput) => {
   const checkValue = myProjects.includes(nameInput.value);
   if (checkValue) {
@@ -30,9 +25,7 @@ const findProject = (title) => {
 const addTaskToProject = (t, index) => {
   // myProjects[index].taskList.push(t);
   myProjects[index].taskList[t.id] = t; // With task.id as property of task object
-  console.log('project updated:', myProjects[index].name);
-  console.log(myProjects[index].taskList);
-  console.log('all; ', myProjects);
+
   // form.style.display = 'none'; // This would remove form when done button is hit
 
   // open form for creating tasks  // After new task button
@@ -40,15 +33,16 @@ const addTaskToProject = (t, index) => {
 
 // Captures task form values and push it as obj into prop taskList of specific myProjects item
 const createTasks = (projectName) => {
-  //renderTodoContainer(projectName);
   newTodoForm();
 
+  const title = document.getElementsByClassName('text-danger');
   const form = document.getElementById('todo-form');
   const input = document.getElementById('input');
   const textarea = document.querySelector('textarea');
   const deadline = document.querySelector('input[type=date]');
   const priority = document.querySelectorAll('input[type=radio]');
-
+  const doneBtn = document.getElementById('done-btn');
+  
   // captures data from form then push them into task object inside project
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -79,20 +73,23 @@ const createTasks = (projectName) => {
 
     addTaskToProject(task, indexOfWorkingProject);
 
-    form.reset()
+    form.reset();
     input.focus();
 
     // Sends task to renderer
     renderTodoItems(indexOfWorkingProject);
+  });
+
+  doneBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    form.style.display = 'none';
+    title.textContent = '';
   });
 };
 
 const addProject = (p) => {
   const project = new Project(p); // Creates project with name specified in form
   myProjects.push(project);
-  console.log('new project in', myProjects);
-
-  // form.style.display = 'none';
 
   // open form for creating tasks
 
@@ -123,15 +120,22 @@ const createNewProject = () => {
 };
 
 // *****Second menu option*****
-const editDefaultProject = () => {
-  renderTodoContainer('Default');
-  createTasks('Default');
+const editProjects = (pName) => {
+  renderTodoContainer(pName);
+  createTasks(pName);
 };
 
 // *****Third menu option*****
 const showProjectItems = () => {
   renderProjectsContainer();
   renderProjectItems();
+  const projects = document.querySelectorAll('.alert');
+  projects.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      editProjects(e.target.textContent);
+    });
+  });
 };
 
 // buttons delete and status of each task item
@@ -141,7 +145,6 @@ const taskEditActions = (e) => {
 
   if (e.target.classList.contains('fa-check-circle')) {
     myProjects[prjIndex].taskList[e.target.id].status = true;
-    console.log('status', myProjects[prjIndex].taskList[e.target.id].status);
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-minus-circle')) {
     delete myProjects[prjIndex].taskList[e.target.id];
@@ -158,5 +161,5 @@ taskListDiv.addEventListener('click', (e) => {
 });
 
 export {
-  createNewProject, editDefaultProject, showProjectItems,
+  createNewProject, editProjects, showProjectItems,
 };

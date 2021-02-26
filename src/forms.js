@@ -70,7 +70,8 @@ const newTodoForm = () => {
   const submitBtn = addDomElem('button', 'class', 'btn btn-primary btn-lg col-6 mx-2');
   submitBtn.setAttribute('type', 'submit');
   submitBtn.textContent = 'Add it!';
-  const doneBtn = addDomElem('button', 'class', 'btn btn-info btn-lg ml3 col-4 mx-2'); // hides form
+  const doneBtn = addDomElem('a', 'class', 'btn btn-info btn-lg ml3 col-4 mx-2'); // hides form
+  doneBtn.id = 'done-btn';
   doneBtn.textContent = 'Done';
 
   taskFormGroup1.append(taskFormLabel1, taskFormInput);
@@ -82,13 +83,5 @@ const newTodoForm = () => {
 
   renderForms(taskFormTitle, taskForm, true);
 };
-
-
-/*
-// Creator of TODO
-
-*/
-
-// Add a form for finding project by name! Using includes()
 
 export { newProjectForm, newTodoForm, box };

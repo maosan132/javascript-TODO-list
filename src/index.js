@@ -1,5 +1,5 @@
 import {
-  createNewProject, editDefaultProject, showProjectItems
+  createNewProject, editProjects, showProjectItems,
 } from './controller';
 
 const menu = document.getElementById('menu');
@@ -14,7 +14,7 @@ const selectActions = e => {
       createNewProject();
       break;
     case 'default':
-      editDefaultProject();
+      editProjects('Default');
       break;
     case 'projects':
       showProjectItems();
