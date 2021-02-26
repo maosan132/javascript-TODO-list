@@ -27,6 +27,13 @@ const createRadios = (val) => {
   setAttributes(input, { type: 'radio', name: 'choice', value: val });
   div.appendChild(input);
   return div;
+};
 
-}
-export { addDomElem, setAttributes, createRadios };
+const cleanContainer = (i) => {
+  i.innerHTML = '';
+  console.log('cleaned box');
+};
+
+export {
+  addDomElem, setAttributes, createRadios, cleanContainer,
+};

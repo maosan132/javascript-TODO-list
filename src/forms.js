@@ -2,7 +2,9 @@
 // - project
 // - todo list
 
-import { addDomElem, setAttributes, createRadios } from './helper';
+import {
+  addDomElem, setAttributes, createRadios, cleanContainer,
+} from './helper';
 
 const box = document.getElementById('box');
 
@@ -17,6 +19,7 @@ const renderForms = (title, form, btn = false) => {
 };
 
 const newProjectForm = () => {
+  cleanContainer(box);
   const projectFormTitle = addDomElem('h4', 'class', 'py-2', 'New Project');
   const projectForm = addDomElem('form', 'class', 'justify-content-start align-items-start');
   projectForm.classList.add('p-2', 'border');
@@ -53,12 +56,12 @@ const newTodoForm = () => {
   const taskFormLabel2 = addDomElem('label', 'class', 'd-none', 'Description:');
   const textArea = addDomElem('textarea', 'class', 'form-control');
   setAttributes(textArea, { placeholder: 'Name of task here', required: '' });
-  const taskFormGroup3 = addDomElem('div', 'class', 'form-group d-flex  align-items-center');
+  const taskFormGroup3 = addDomElem('div', 'class', 'form-group d-flex align-items-center');//
   const taskFormLabel3 = addDomElem('label', 'class', 'col-4 mb-0', 'Due Date:');
   const dateInput = addDomElem('input', 'class', 'form-control');
   dateInput.setAttribute('type', 'date');
   const taskFormGroup4 = addDomElem('div', 'class', 'form-group d-flex justify-content-around');
-  const taskFormLabel4 = addDomElem('label', 'class', '', 'Priority:');
+  const taskFormLabel4 = addDomElem('label', 'class', 'nul', 'Priority:');
   const radio1 = createRadios('High');
   const radio2 = createRadios('Normal');
   const radio3 = createRadios('Low');
@@ -74,9 +77,10 @@ const newTodoForm = () => {
   taskFormGroup2.append(taskFormLabel2, textArea);
   taskFormGroup3.append(taskFormLabel3, dateInput);
   taskFormGroup4.append(taskFormLabel4, radio1, radio2, radio3);
-  taskForm.append(taskFormGroup1, taskFormGroup2, taskFormGroup3, taskFormGroup4, submit, doneBtn);
+  taskForm.append(taskFormGroup1, taskFormGroup2, taskFormGroup3,
+    taskFormGroup4, submitBtn, doneBtn);
 
-  renderForms(projectFormTitle, projectForm, true);
+  renderForms(taskFormTitle, taskForm, true);
 };
 
 

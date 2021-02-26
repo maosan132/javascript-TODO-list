@@ -1,5 +1,6 @@
 import { Project, myProjects } from './project-model';
 import { Task } from './task-model';
+// import { cleanBox } from './helper';
 import { newProjectForm, newTodoForm } from './forms';
 import {
   renderProjectItems, renderTodoItems, renderTodoContainer, taskListDiv,
@@ -53,7 +54,7 @@ const createTasks = (projectName) => {
     // console.log(e.target[0].value);
     // console.log(input.value);
     // console.log('hello', e);
-    // console.log(textarea.value);
+    console.log(textarea.value);
 
     let selectedValue;
 
@@ -80,6 +81,8 @@ const createTasks = (projectName) => {
       false,
     );
 
+    console.log('task created', task);
+    console.log('projects updated w task', myProjects);
     // finds out what Project has this project name
     const indexOfWorkingProject = myProjects.indexOf(findProject(projectName));
 
@@ -90,14 +93,15 @@ const createTasks = (projectName) => {
     input.focus();
 
     // Sends task to renderer
-    taskListDiv.appendChild(renderTodoItems(indexOfWorkingProject));
+    // taskListDiv.appendChild(renderTodoItems(indexOfWorkingProject));
+    renderTodoItems(indexOfWorkingProject);
   });
 };
 
 const addProject = (p) => {
   const project = new Project(p);
   myProjects.push(project);
-  console.log('projects', myProjects);
+  console.log('new project in', myProjects);
 
   // form.style.display = 'none';
 
@@ -115,15 +119,14 @@ const addProject = (p) => {
 // *****First menu option*****
 const createNewProject = () => {
   newProjectForm(); // puts the form inside box
+  const saveButton = document.querySelector('button');
 
-  const submitButton = document.querySelector('button');
-
-  submitButton.addEventListener('click', (e) => {
+  saveButton.addEventListener('click', (e) => {
     e.preventDefault();
     const nameInput = document.querySelector('input.form-control');
 
     if (!validateProjectName(nameInput)) {
-      // console.log('input was: ', nameInput.value);
+      // console.log('input value: ', nameInput.value);
       const projectName = nameInput.value;
       addProject(projectName);
     }

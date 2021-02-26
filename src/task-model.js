@@ -20,6 +20,7 @@ function Task(name, description, date, priority, status = false) {
 //   }
 // }
 
+
 export {
-  Task
+  Task,
 };

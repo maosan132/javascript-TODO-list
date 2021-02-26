@@ -13,15 +13,16 @@ function Project(name, taskList = []) {
 // class Project {
 //   constructor(name, taskList = []) {
 //     this.name = name;
-//     this.tasklist = taskList;|
+//     this.taskList = taskList;|
 //   }
 // }
 
+const defaultPrj = new Project('Default');
+
 const myProjects = []; // an array which will contain a list of projects
 
-
-// const defaultProject = new Project('Default Project');
+myProjects.push(defaultPrj);
 
 export {
-  Project, myProjects,
+  Project, myProjects, defaultPrj,
 };
