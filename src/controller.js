@@ -5,6 +5,7 @@ import { newProjectForm, newTodoForm } from './forms';
 import {
   renderProjectItems, renderTodoItems, renderTodoContainer, taskListDiv,
 } from './views';
+import { debugColor } from './helper';
 
 // const form = document.forms[0];
 
@@ -38,7 +39,7 @@ const addTaskToProject = (t, index) => {
 
 // Captures task form values and push it as obj into prop taskList of specific myProjects item
 const createTasks = (projectName) => {
-  renderTodoContainer(projectName);
+  //renderTodoContainer(projectName);
   newTodoForm();
 
   const form = document.getElementById('todo-form');
@@ -54,17 +55,8 @@ const createTasks = (projectName) => {
     // console.log(e.target[0].value);
     // console.log(input.value);
     // console.log('hello', e);
-    console.log(textarea.value);
 
     let selectedValue;
-
-    // for (const elem of priority) {
-    //     if (radio.checked) {
-    //       // console.log(elem.value);
-    //         selectedValue = radio.value;
-    //         break;
-    //     }
-    // };
 
     priority.forEach(item => {
       if (item.checked) {
@@ -81,7 +73,6 @@ const createTasks = (projectName) => {
       false,
     );
 
-    console.log('task created', task);
     console.log('projects updated w task', myProjects);
     // finds out what Project has this project name
     const indexOfWorkingProject = myProjects.indexOf(findProject(projectName));
@@ -93,13 +84,12 @@ const createTasks = (projectName) => {
     input.focus();
 
     // Sends task to renderer
-    // taskListDiv.appendChild(renderTodoItems(indexOfWorkingProject));
     renderTodoItems(indexOfWorkingProject);
   });
 };
 
 const addProject = (p) => {
-  const project = new Project(p);
+  const project = new Project(p); // Creates project with name specified in form
   myProjects.push(project);
   console.log('new project in', myProjects);
 
@@ -143,20 +133,24 @@ const showProjectItems = () => {
   renderProjectItems();
 };
 
-// buttons delete and finished of each task item
+// buttons delete and status of each task item
 const taskEditActions = (e) => {
-  const currentTaskPrj = document.getElementsByTagName('a')[0].id;
+  console.log('hello', e.target);
+  const currentTaskPrj = document.getElementsByTagName('a')[0].id; // Gets name of current prj
   const prjIndex = myProjects.indexOf(findProject(currentTaskPrj));
-  // Arbitrary a tag. Name of the project owner of current tasks
+
   if (e.target.classList.contains('fa-check-circle')) {
-    myProjects[prjIndex].taskList[e.target.id] = true;
-    // myProjects[e.target.id].status = true;
+    myProjects[prjIndex].taskList[e.target.id].status = true;
+    console.log('status', myProjects[prjIndex].taskList[e.target.id].status);
+    debugColor('r');
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-minus-circle')) {
     delete myProjects[prjIndex].taskList[e.target.id];
+    debugColor('g');
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-undo-alt')) {
     myProjects[prjIndex].taskList[e.target.id].status = false;
+    debugColor('b');
     renderTodoItems(prjIndex);
   }
   e.stopPropagation();

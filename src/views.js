@@ -57,7 +57,7 @@ const renderProjectsContainer = () => {
 
 // Renders every task item inside projectsListDiv
 const renderTodoItems = (index) => {
-  console.log('inside rendertodos');
+  console.log('inside rendertodoItems');
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
   const taskDiv = addDomElem('div', 'class', 'alert alert-warning align-items-center');
@@ -81,14 +81,23 @@ const renderTodoItems = (index) => {
   secondRow.append(description, iconH4);
   taskDiv.append(firstRow, hrTag, secondRow);
 
-  taskDiv.innerHTML = '';
+  // If there are not tasks to display, puts a message
+  if (!Object.values(myProjects[index].taskList).length) {
+    taskListDiv.innerHTML = `
+    <div class="alert alert-dark">There are not tasks yet. Let's create a new one.</div>
+    `;
+    return;
+  }
+
+  taskListDiv.innerHTML = '';
 
   // loop the array of tasks
 
   // myProjects[index].taskList.forEach(task => {
   Object.entries(myProjects[index].taskList).forEach(([i, task]) => {
     const clone = template.cloneNode(true);
-
+    debugColor('b');
+    console.log('task status? ' , task.status);
     if (task.status) {
       clone.querySelector('.alert').classList.replace('alert-warning', 'alert-primary');
       clone.querySelector('.fa-check-circle ').classList.replace('fa-check-circle', 'fa-undo-alt');
@@ -103,7 +112,7 @@ const renderTodoItems = (index) => {
       clone.querySelector('.fa-battery-half').classList.replace('fa-battery-half', 'fa-battery-empty');
     }
 
-    clone.querySelector('p').textContent = task.title;
+    clone.querySelector('p').textContent = task.name;
     clone.querySelectorAll('span')[1].textContent = task.description;
     clone.getElementById('date').textContent = task.date;
 
@@ -112,8 +121,6 @@ const renderTodoItems = (index) => {
     fragment.appendChild(clone);
   });
   taskListDiv.appendChild(fragment);
-  debugColor('g');
-
 };
 
 // renders the div containing of each task to do
