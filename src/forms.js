@@ -1,12 +1,12 @@
-// file that contains forms for inputs for:
-// - project
-// - todo list
-
 import {
   addDomElem, setAttributes, createRadios, cleanContainer,
 } from './helper';
 
 const box = document.getElementById('box');
+
+const hideForm = (f) => {
+  
+}
 
 const renderForms = (title, form, btn = false) => {
   box.append(title, form);
@@ -37,8 +37,6 @@ const newProjectForm = () => {
   projectFormGroup.append(projectFormLabel, projectFormInput);
   projectForm.append(projectFormGroup, projectSubmitBtn);
 
-
-  // const projectsBox = document.getElementById('box');
   renderForms(projectFormTitle, projectForm);
 };
 

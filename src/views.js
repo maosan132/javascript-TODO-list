@@ -118,6 +118,10 @@ const renderTodoContainer = (pName) => {
   const taskIdentifier = addDomElem('a', 'id', `${pName}`, '');
   const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding some tasks:\n');
 
+  const project = myProjects.find(project => project.name === pName);
+  const projectIndex = myProjects.indexOf(project);
+  renderTodoItems(projectIndex);
+
   box.innerHTML = '';
   box.append(title, taskIdentifier, paragraph, taskListDiv);
 };
@@ -125,3 +129,4 @@ const renderTodoContainer = (pName) => {
 export {
   renderProjectsContainer, renderProjectItems, renderTodoContainer, renderTodoItems, taskListDiv,
 };
+

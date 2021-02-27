@@ -42,7 +42,7 @@ const createTasks = (projectName) => {
   const deadline = document.querySelector('input[type=date]');
   const priority = document.querySelectorAll('input[type=radio]');
   const doneBtn = document.getElementById('done-btn');
-  
+
   // captures data from form then push them into task object inside project
   form.addEventListener('submit', e => {
     e.preventDefault();
