@@ -5,7 +5,6 @@ import { newProjectForm, newTodoForm } from './forms';
 import {
   renderProjectsContainer, renderTodoItems, renderTodoContainer, taskListDiv, renderProjectItems,
 } from './views';
-import { debugColor } from './helper';
 
 const validateProjectName = (nameInput) => {
   const checkValue = myProjects.includes(nameInput.value);
@@ -18,9 +17,7 @@ const validateProjectName = (nameInput) => {
 };
 
 // Finds specific project to work with when inserting todo lists
-const findProject = (title) => {
-  return myProjects.find(p => p.name === title);
-};
+const findProject = title => myProjects.find(p => p.name === title);
 
 const addTaskToProject = (t, index) => {
   // myProjects[index].taskList.push(t);
@@ -47,15 +44,10 @@ const createTasks = (projectName) => {
   form.addEventListener('submit', e => {
     e.preventDefault();
 
-    // console.log(e.target[0].value);
-    // console.log(input.value);
-    // console.log('hello', e);
-
     let selectedValue;
 
     priority.forEach(item => {
       if (item.checked) {
-      // console.log(radio.value);
         selectedValue = item.value;
       }
     });
@@ -80,25 +72,17 @@ const createTasks = (projectName) => {
     renderTodoItems(indexOfWorkingProject);
   });
 
-  doneBtn.addEventListener('click', (e) => {
+  doneBtn.addEventListener('click', e => {
     e.preventDefault();
     form.style.display = 'none';
     h5.classList.add('d-none');
-    console.log(h5);
   });
 };
 
-const addProject = (p) => {
+const addProject = p => {
   const project = new Project(p); // Creates project with name specified in form
   myProjects.push(project);
 
-  // open form for creating tasks
-
-  // Go to a function with a button to create another project, *later*
-
-  // renderProjectItems();  // not now
-
-  // Go to add tasks to this project !!!! *now*
   renderTodoContainer(p);
   createTasks(p);
 };
@@ -113,7 +97,6 @@ const createNewProject = () => {
     const nameInput = document.querySelector('input.form-control');
 
     if (!validateProjectName(nameInput)) {
-      // console.log('input value: ', nameInput.value);
       const projectName = nameInput.value;
       addProject(projectName);
     }

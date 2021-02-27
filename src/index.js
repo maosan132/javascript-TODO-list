@@ -5,7 +5,6 @@ import {
 const menu = document.getElementById('menu');
 
 const selectActions = e => {
-  // console.log(e.target.id);
 
   const menuChoice = e.target.id;
 

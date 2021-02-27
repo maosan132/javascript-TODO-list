@@ -29,8 +29,6 @@ const renderProjectItems = () => {
   return projectsListDiv.appendChild(fragment);
 };
 
-// project div delete project and edit buttons functions but in the controller
-
 // renders the projects container
 const renderProjectsContainer = () => {
   const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
@@ -81,9 +79,6 @@ const renderTodoItems = (index) => {
 
   taskListDiv.innerHTML = '';
 
-  // loop the array of tasks
-
-  // myProjects[index].taskList.forEach(task => {
   Object.entries(myProjects[index].taskList).forEach(([i, task]) => {
     const clone = template.cloneNode(true);
     if (task.status) {
@@ -115,18 +110,17 @@ const renderTodoItems = (index) => {
 const renderTodoContainer = (pName) => {
   // bring project name here
   const title = addDomElem('h4', 'class', 'py-2', `Todo List - ${pName} project`);
-  const taskIdentifier = addDomElem('a', 'id', `${pName}`, ''); // For grabbing task 
-  const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding some tasks:\n');
+  const taskIdentifier = addDomElem('a', 'id', `${pName}`, ''); // For grabbing task
+  // const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding some tasks:\n');
 
   const project = myProjects.find(project => project.name === pName);
   const projectIndex = myProjects.indexOf(project);
   renderTodoItems(projectIndex);
 
   box.innerHTML = '';
-  box.append(title, taskIdentifier, paragraph, taskListDiv);
+  box.append(title, taskIdentifier, taskListDiv);
 };
 
 export {
   renderProjectsContainer, renderProjectItems, renderTodoContainer, renderTodoItems, taskListDiv,
 };
-

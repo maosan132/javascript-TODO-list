@@ -1,11 +1,11 @@
 import {
-  addDomElem, setAttributes, createRadios, cleanContainer,
+  addDomElem, setAttributes, createRadios,
 } from './helper';
 
 const box = document.getElementById('box');
 
 const hideForm = (f) => {
-  
+
 }
 
 const renderForms = (title, form, btn = false) => {
@@ -19,7 +19,7 @@ const renderForms = (title, form, btn = false) => {
 };
 
 const newProjectForm = () => {
-  cleanContainer(box);
+  box.innerHTML = '';
   const projectFormTitle = addDomElem('h4', 'class', 'py-2', 'New Project');
   const projectForm = addDomElem('form', 'class', 'justify-content-start align-items-start');
   projectForm.classList.add('p-2', 'border');
