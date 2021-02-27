@@ -1,3 +1,4 @@
+import './style.css';
 import {
   createNewProject, editProjects, showProjectItems,
 } from './controller';
