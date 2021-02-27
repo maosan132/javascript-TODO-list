@@ -35,7 +35,7 @@ const addTaskToProject = (t, index) => {
 const createTasks = (projectName) => {
   newTodoForm();
 
-  const title = document.getElementsByClassName('text-danger');
+  const h5 = document.querySelector('h5');
   const form = document.getElementById('todo-form');
   const input = document.getElementById('input');
   const textarea = document.querySelector('textarea');
@@ -83,7 +83,8 @@ const createTasks = (projectName) => {
   doneBtn.addEventListener('click', (e) => {
     e.preventDefault();
     form.style.display = 'none';
-    title.textContent = '';
+    h5.classList.add('d-none');
+    console.log(h5);
   });
 };
 
