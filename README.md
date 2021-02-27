@@ -4,7 +4,7 @@
 
 > Main purpose of this project is practicing greatest features of Javascript, such as object constructors, prototypal inheritance and functional programming and modules. The TODO app consist on a utility that let us to create projects and their lists of tasks needed to accomplish such project. I focused in the mobile only approach as for the first version of the app.
 
-![screenshot](./app_screenshot.png)
+![screenshot](./todo_screenshot.png)
 
 ## Built With
 
