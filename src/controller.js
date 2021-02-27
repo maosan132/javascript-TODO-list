@@ -1,5 +1,5 @@
 import { Project, myProjects } from './project-model';
-import { Task } from './task-model';
+import Task from './task-model';
 // import { cleanBox } from './helper';
 import { newProjectForm, newTodoForm } from './forms';
 import {

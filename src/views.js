@@ -79,7 +79,7 @@ const renderTodoItems = (index) => {
 
   taskListDiv.innerHTML = '';
 
-  Object.entries(myProjects[index].taskList).forEach(([i, task]) => {
+  Object.values(myProjects[index].taskList).forEach(task => {
     const clone = template.cloneNode(true);
     if (task.status) {
       clone.querySelector('.alert').classList.replace('alert-warning', 'alert-primary');

@@ -4,10 +4,6 @@ import {
 
 const box = document.getElementById('box');
 
-const hideForm = (f) => {
-
-}
-
 const renderForms = (title, form, btn = false) => {
   box.append(title, form);
   if (btn) { // adds a button to open form again
@@ -27,7 +23,6 @@ const newProjectForm = () => {
   const projectFormLabel = addDomElem('label', 'class', 'd-none', 'Name:');
   const projectFormInput = addDomElem('input', 'class', 'form-control');
   const projectSubmitBtn = addDomElem('button', 'class', 'btn btn-primary btn-lg mb-1 px-5');
-  // projectSubmitBtn.classList.add('Save it!');  // weird stuff!
   projectSubmitBtn.textContent = 'Save';
   setAttributes(projectFormInput, {
     type: 'text', placeholder: 'Name of this project', required: '', autofocus: '',
