@@ -22,6 +22,8 @@ const myProjects = []; // an array which will contain a list of projects
 
 myProjects.push(defaultPrj);
 
+localStorage.setItem('projects', JSON.stringify(tasks));
+
 export {
   Project, myProjects, defaultPrj,
 };
