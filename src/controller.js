@@ -79,6 +79,10 @@ const createTasks = (projectName) => {
   });
 };
 
+const editTask = task => {
+  box.innerHTML = '';
+  newTodoForm();
+}
 const addProject = p => {
   const project = new Project(p); // Creates project with name specified in form
   myProjects.push(project);
@@ -136,6 +140,8 @@ const taskEditActions = (e) => {
   } else if (e.target.classList.contains('fa-undo-alt')) {
     myProjects[prjIndex].taskList[e.target.id].status = false;
     renderTodoItems(prjIndex);
+  } else if (e.target.classList.contains('fa-edit')) {
+    editTask(myProjects[prjIndex].taskList[e.target.id]);
   }
   e.stopPropagation();
 };
