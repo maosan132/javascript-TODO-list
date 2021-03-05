@@ -9,6 +9,7 @@ const projectsListDiv = addDomElem('div', 'class', 'mt-3'); // Inside this the b
 const renderProjectItems = () => {
   const template = document.getElementById('template-project').content;
   const fragment = document.createDocumentFragment();
+  /*
   const projectDiv = addDomElem('div', 'class', 'alert alert-danger d-flex align-items-center');
   projectDiv.classList.add('justify-content-between');
   projectDiv.setAttribute('role', 'button');
@@ -18,7 +19,7 @@ const renderProjectItems = () => {
   // trashIcon.setAttribute('role', 'button');
   projectDiv.append(projectName);
   // iconH3.append(trashIcon);
-
+*/
   projectsListDiv.innerHTML = '';
   myProjects.forEach(item => {
     const clone = template.cloneNode(true);
@@ -48,26 +49,26 @@ const renderProjectsContainer = () => {
 const renderTodoItems = (index) => {
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
-  const taskDiv = addDomElem('div', 'class', 'alert alert-warning align-items-center');
-  const firstRow = addDomElem('div', 'class', 'd-flex justify-content-between');
-  const date = addDomElem('span', 'id', 'date');
-  const taskName = addDomElem('p', 'class', 'm-0');
-  const buttonsH3 = addDomElem('h3', 'class', 'm-0');
-  const checkIcon = addDomElem('i', 'class', 'fas fa-check-circle text-success mr-2');
-  const deleteIcon = addDomElem('i', 'class', 'fas fa-minus-circle text-danger');
-  checkIcon.setAttribute('role', 'button');
-  deleteIcon.setAttribute('role', 'button');
-  const hrTag = addDomElem('hr', 'class', 'm-0');
-  const secondRow = addDomElem('div', 'class', 'd-flex justify-content-between');
-  const description = document.createElement('span');
-  const iconH4 = document.createElement('h4');
-  const priorityIcon = addDomElem('i', 'class', 'fa fa-battery-half');
+  // const taskDiv = addDomElem('div', 'class', 'alert alert-warning align-items-center');
+  // const firstRow = addDomElem('div', 'class', 'd-flex justify-content-between');
+  // const date = addDomElem('span', 'id', 'date');
+  // const taskName = addDomElem('p', 'class', 'm-0');
+  // const buttonsH3 = addDomElem('h3', 'class', 'm-0');
+  // const checkIcon = addDomElem('i', 'class', 'fas fa-check-circle text-success mr-2');
+  // const deleteIcon = addDomElem('i', 'class', 'fas fa-minus-circle text-danger');
+  // checkIcon.setAttribute('role', 'button');
+  // deleteIcon.setAttribute('role', 'button');
+  // const hrTag = addDomElem('hr', 'class', 'm-0');
+  // const secondRow = addDomElem('div', 'class', 'd-flex justify-content-between');
+  // const description = document.createElement('span');
+  // const iconH4 = document.createElement('h4');
+  // const priorityIcon = addDomElem('i', 'class', 'fa fa-battery-half');
 
-  buttonsH3.append(checkIcon, deleteIcon);
-  firstRow.append(date, taskName, buttonsH3);
-  iconH4.appendChild(priorityIcon);
-  secondRow.append(description, iconH4);
-  taskDiv.append(firstRow, hrTag, secondRow);
+  // buttonsH3.append(checkIcon, deleteIcon);
+  // firstRow.append(date, taskName, buttonsH3);
+  // iconH4.appendChild(priorityIcon);
+  // secondRow.append(description, iconH4);
+  // taskDiv.append(firstRow, hrTag, secondRow);
 
   // If there are not tasks to display, puts a message
   if (!Object.values(myProjects[index].taskList).length) {
