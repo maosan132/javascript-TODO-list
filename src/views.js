@@ -25,11 +25,7 @@ const renderProjectsContainer = () => {
   const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
   const projectPara = addDomElem('p', 'class', 'text-center');
   projectPara.textContent = 'Select a project and start adding your Todo tasks:\n';
-  // const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex mb-2');
-  // homeBtnTemp.classList.add('align-items-center');
-  // homeBtnTemp.textContent = 'Projects';
-  // const homeBtn = homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'));
-  // homeBtn.setAttribute('type', 'button');
+
 
   box.innerHTML = '';
   box.append(projectTitle, projectPara, projectsListDiv);
@@ -83,8 +79,7 @@ const renderTodoContainer = (pName) => {
   // bring project name here
   const title = addDomElem('h4', 'class', 'py-2', `Todo List - ${pName} project`);
   const taskIdentifier = addDomElem('a', 'id', `${pName}`, ''); // For grabbing task
-  // const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding some tasks:\n');
-
+ 
   const project = myProjects.find(project => project.name === pName);
   const projectIndex = myProjects.indexOf(project);
   renderTodoItems(projectIndex);

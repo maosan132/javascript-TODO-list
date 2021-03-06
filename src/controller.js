@@ -80,10 +80,14 @@ const captureNewTask = (projectName) => {
     editTasks(form, input, textarea, deadline, priority, projectName);
   });
 
-  doneBtn.addEventListener('click', e => {
-    e.preventDefault();
+  const clearTaskForm = () => {
     form.style.display = 'none';
     h5.classList.add('d-none');
+  };
+
+  doneBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearTaskForm();
   });
 };
 
@@ -132,7 +136,6 @@ const showProjectItems = () => {
 
 const updateTask = (tName, pName, i, id) => {
   box.innerHTML = '';
-  // const boxer = document.querySelector('#box');
   newTodoForm('edit');
   document.querySelectorAll('h5')[0].innerText = `Edit task '${tName}' of ${pName}'s  project.`;
   const form = document.getElementById('todo-form');
@@ -149,7 +152,6 @@ const updateTask = (tName, pName, i, id) => {
   form.addEventListener('submit', e => {
     e.preventDefault();
     editTasks(form, input, textarea, deadline, priority, pName, id);
-    box.innerHTML = '';
   });
 };
 
