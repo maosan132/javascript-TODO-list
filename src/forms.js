@@ -58,9 +58,8 @@ const newTodoForm = (kind) => {
   const radio1 = createRadios('High');
   const radio2 = createRadios('Normal');
   const radio3 = createRadios('Low');
-  // createRadios('Normal');
-  // createRadios('Low');
-  radio2.setAttribute('checked', 'checked');
+  const defaultRadio = radio2.firstChild.nextSibling;
+  defaultRadio.setAttribute('checked', 'checked');
   const submitBtn = addDomElem('button', 'class', 'btn btn-primary btn-lg col-6 mx-2');
   submitBtn.setAttribute('type', 'submit');
   submitBtn.textContent = !kind ? 'Add it!' : 'Update task';

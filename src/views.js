@@ -37,7 +37,6 @@ const renderProjectsContainer = () => {
 
 // Renders every task item inside projectsListDiv
 const renderTodoItems = (index) => {
-  console.log(myProjects);
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
 

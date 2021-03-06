@@ -1,6 +1,5 @@
 import { Project, myProjects } from './project-model';
 import Task from './task-model';
-// import { cleanBox } from './helper';
 import { newProjectForm, newTodoForm, box } from './forms';
 import {
   renderProjectsContainer, renderTodoItems, renderTodoContainer, taskListDiv, renderProjectItems,
@@ -35,7 +34,6 @@ const editTasks = (f, i, t, d, p, pName, id) => {
   });
 
   if (!id) {
-    console.log('nuevo');
     const task = new Task(
       i.value,
       t.value,
@@ -45,7 +43,6 @@ const editTasks = (f, i, t, d, p, pName, id) => {
     );
     addTaskToProject(task, indexOfWorkingProject);
   } else {
-    console.log('update');
     const project = myProjects.find(project => project.name === pName);
     const projectIndex = myProjects.indexOf(project);
     const taskItem = myProjects[projectIndex].taskList[id];
@@ -152,6 +149,7 @@ const updateTask = (tName, pName, i, id) => {
   form.addEventListener('submit', e => {
     e.preventDefault();
     editTasks(form, input, textarea, deadline, priority, pName, id);
+    box.innerHTML = '';
   });
 };
 
@@ -171,11 +169,6 @@ const taskActions = (e) => {
     taskItem.status = false;
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-edit')) {
-    // console.log(taskItem.name);
-    // console.log(taskItem);
-    // console.log(prjIndex);
-    // console.log(currentTaskPrj);
-
     updateTask(taskItem.name, currentTaskPrj, prjIndex, e.target.id);
   }
   e.stopPropagation();
