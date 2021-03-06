@@ -1,7 +1,7 @@
 import { Project, myProjects } from './project-model';
 import Task from './task-model';
 // import { cleanBox } from './helper';
-import { newProjectForm, newTodoForm } from './forms';
+import { newProjectForm, newTodoForm, box } from './forms';
 import {
   renderProjectsContainer, renderTodoItems, renderTodoContainer, taskListDiv, renderProjectItems,
 } from './views';
@@ -20,16 +20,52 @@ const validateProjectName = (nameInput) => {
 const findProject = title => myProjects.find(p => p.name === title);
 
 const addTaskToProject = (t, index) => {
-  // myProjects[index].taskList.push(t);
   myProjects[index].taskList[t.id] = t; // With task.id as property of task object
+};
 
-  // form.style.display = 'none'; // This would remove form when done button is hit
+// captures form, input, textarea, deadline, priority and creates task element
+const editTasks = (f, i, t, d, p, pName, id) => {
+  const indexOfWorkingProject = myProjects.indexOf(findProject(pName));
+  let selectedValue;
 
-  // open form for creating tasks  // After new task button
+  p.forEach(item => {
+    if (item.checked) {
+      selectedValue = item.value;
+    }
+  });
+
+  if (!id) {
+    console.log('nuevo');
+    const task = new Task(
+      i.value,
+      t.value,
+      d.value,
+      selectedValue,
+      false,
+    );
+    addTaskToProject(task, indexOfWorkingProject);
+  } else {
+    console.log('update');
+    const project = myProjects.find(project => project.name === pName);
+    const projectIndex = myProjects.indexOf(project);
+    const taskItem = myProjects[projectIndex].taskList[id];
+    taskItem.name = i.value;
+    taskItem.description = t.value;
+    taskItem.date = d.value;
+    taskItem.priority = selectedValue;
+  }
+
+  // finds out what Project has this project name
+
+  f.reset();
+  i.focus();
+
+  // Sends task to renderer
+  renderTodoItems(indexOfWorkingProject);
 };
 
 // Captures task form values and push it as obj into prop taskList of specific myProjects item
-const createTasks = (projectName) => {
+const captureNewTask = (projectName) => {
   newTodoForm();
 
   const h5 = document.querySelector('h5');
@@ -41,35 +77,10 @@ const createTasks = (projectName) => {
   const doneBtn = document.getElementById('done-btn');
 
   // captures data from form then push them into task object inside project
+
   form.addEventListener('submit', e => {
     e.preventDefault();
-
-    let selectedValue;
-
-    priority.forEach(item => {
-      if (item.checked) {
-        selectedValue = item.value;
-      }
-    });
-
-    const task = new Task(
-      input.value,
-      textarea.value,
-      deadline.value,
-      selectedValue,
-      false,
-    );
-
-    // finds out what Project has this project name
-    const indexOfWorkingProject = myProjects.indexOf(findProject(projectName));
-
-    addTaskToProject(task, indexOfWorkingProject);
-
-    form.reset();
-    input.focus();
-
-    // Sends task to renderer
-    renderTodoItems(indexOfWorkingProject);
+    editTasks(form, input, textarea, deadline, priority, projectName);
   });
 
   doneBtn.addEventListener('click', e => {
@@ -79,16 +90,12 @@ const createTasks = (projectName) => {
   });
 };
 
-const editTask = task => {
-  box.innerHTML = '';
-  newTodoForm();
-}
 const addProject = p => {
   const project = new Project(p); // Creates project with name specified in form
   myProjects.push(project);
 
   renderTodoContainer(p);
-  createTasks(p);
+  captureNewTask(p);
 };
 
 // *****First menu option*****
@@ -110,7 +117,7 @@ const createNewProject = () => {
 // *****Second menu option*****
 const editProjects = (pName) => {
   renderTodoContainer(pName);
-  createTasks(pName);
+  captureNewTask(pName);
 };
 
 // *****Third menu option*****
@@ -126,28 +133,56 @@ const showProjectItems = () => {
   });
 };
 
+const updateTask = (tName, pName, i, id) => {
+  box.innerHTML = '';
+  // const boxer = document.querySelector('#box');
+  newTodoForm('edit');
+  document.querySelectorAll('h5')[0].innerText = `Edit task '${tName}' of ${pName}'s  project.`;
+  const form = document.getElementById('todo-form');
+  const input = document.getElementById('input');
+  const textarea = document.querySelector('textarea');
+  const deadline = document.querySelector('input[type=date]');
+  const priority = document.querySelectorAll('input[type=radio]');
+
+  input.value = myProjects[i].taskList[id].name;
+  input.style.color = 'red';
+  textarea.value = myProjects[i].taskList[id].description;
+  deadline.value = myProjects[i].taskList[id].date;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    editTasks(form, input, textarea, deadline, priority, pName, id);
+  });
+};
+
 // buttons delete and status of each task item
-const taskEditActions = (e) => {
+const taskActions = (e) => {
   const currentTaskPrj = document.getElementsByTagName('a')[0].id; // Gets name of current prj
   const prjIndex = myProjects.indexOf(findProject(currentTaskPrj));
+  const taskItem = myProjects[prjIndex].taskList[e.target.id];
 
   if (e.target.classList.contains('fa-check-circle')) {
-    myProjects[prjIndex].taskList[e.target.id].status = true;
+    taskItem.status = true;
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-minus-circle')) {
     delete myProjects[prjIndex].taskList[e.target.id];
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-undo-alt')) {
-    myProjects[prjIndex].taskList[e.target.id].status = false;
+    taskItem.status = false;
     renderTodoItems(prjIndex);
   } else if (e.target.classList.contains('fa-edit')) {
-    editTask(myProjects[prjIndex].taskList[e.target.id]);
+    // console.log(taskItem.name);
+    // console.log(taskItem);
+    // console.log(prjIndex);
+    // console.log(currentTaskPrj);
+
+    updateTask(taskItem.name, currentTaskPrj, prjIndex, e.target.id);
   }
   e.stopPropagation();
 };
 
 taskListDiv.addEventListener('click', (e) => {
-  taskEditActions(e);
+  taskActions(e);
 });
 
 export {

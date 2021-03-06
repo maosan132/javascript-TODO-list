@@ -37,6 +37,7 @@ const renderProjectsContainer = () => {
 
 // Renders every task item inside projectsListDiv
 const renderTodoItems = (index) => {
+  console.log(myProjects);
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
 
@@ -69,9 +70,10 @@ const renderTodoItems = (index) => {
     clone.querySelector('p').textContent = task.name;
     clone.querySelectorAll('span')[1].textContent = task.description;
     clone.getElementById('date').textContent = task.date;
-
     clone.querySelector('.fas').id = task.id;
     clone.querySelectorAll('.fas')[1].id = task.id;
+    clone.querySelectorAll('.fas')[2].id = task.id;
+
     fragment.appendChild(clone);
   });
   taskListDiv.appendChild(fragment);
