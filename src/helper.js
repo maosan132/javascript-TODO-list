@@ -16,9 +16,6 @@ const setAttributes = (el, attrs) => {
   Object.entries(attrs).forEach(([key, value]) => {
     el.setAttribute(key, value);
   });
-  // for (const key in attrs) {
-  //   el.setAttribute(key, attrs[key]);
-  // }
 };
 
 const createRadios = (val) => {

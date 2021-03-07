@@ -79,7 +79,7 @@ const renderTodoContainer = (pName) => {
   // bring project name here
   const title = addDomElem('h4', 'class', 'py-2', `Todo List - ${pName} project`);
   const taskIdentifier = addDomElem('a', 'id', `${pName}`, ''); // For grabbing task
- 
+
   const project = myProjects.find(project => project.name === pName);
   const projectIndex = myProjects.indexOf(project);
   renderTodoItems(projectIndex);
