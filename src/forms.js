@@ -35,7 +35,7 @@ const newProjectForm = () => {
   renderForms(projectFormTitle, projectForm);
 };
 
-const newTodoForm = () => {
+const newTodoForm = (kind) => {
   const taskFormTitle = addDomElem('h5', 'class', 'py-2 text-danger', 'New Task');
   const taskForm = addDomElem('form', 'class', 'pb-4 border p-2');
   taskForm.id = 'todo-form';
@@ -58,11 +58,11 @@ const newTodoForm = () => {
   const radio1 = createRadios('High');
   const radio2 = createRadios('Normal');
   const radio3 = createRadios('Low');
-  createRadios('Normal');
-  createRadios('Low');
+  const defaultRadio = radio2.firstChild.nextSibling;
+  defaultRadio.setAttribute('checked', 'checked');
   const submitBtn = addDomElem('button', 'class', 'btn btn-primary btn-lg col-6 mx-2');
   submitBtn.setAttribute('type', 'submit');
-  submitBtn.textContent = 'Add it!';
+  submitBtn.textContent = !kind ? 'Add it!' : 'Update task';
   const doneBtn = addDomElem('a', 'class', 'btn btn-info btn-lg ml3 col-4 mx-2'); // hides form
   doneBtn.id = 'done-btn';
   doneBtn.textContent = 'Done';
@@ -72,7 +72,8 @@ const newTodoForm = () => {
   taskFormGroup3.append(taskFormLabel3, dateInput);
   taskFormGroup4.append(taskFormLabel4, radio1, radio2, radio3);
   taskForm.append(taskFormGroup1, taskFormGroup2, taskFormGroup3,
-    taskFormGroup4, submitBtn, doneBtn);
+    taskFormGroup4, submitBtn);
+  if (!kind) taskForm.appendChild(doneBtn);
 
   renderForms(taskFormTitle, taskForm, true);
 };

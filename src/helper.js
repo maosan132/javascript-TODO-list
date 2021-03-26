@@ -16,13 +16,11 @@ const setAttributes = (el, attrs) => {
   Object.entries(attrs).forEach(([key, value]) => {
     el.setAttribute(key, value);
   });
-  // for (const key in attrs) {
-  //   el.setAttribute(key, attrs[key]);
-  // }
 };
 
 const createRadios = (val) => {
   const div = addDomElem('div', 'class', 'form-check', val);
+  div.classList.add('d-flex');
   const input = addDomElem('input', 'class', 'form-check-input');
   setAttributes(input, { type: 'radio', name: 'choice', value: val });
   div.appendChild(input);

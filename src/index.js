@@ -7,7 +7,6 @@ import { myProjects } from './project-model';
 localStorage.setItem('projects', JSON.stringify(myProjects));
 
 document.addEventListener('DOMContentLoaded', () => {
-  // console.log('lstorage');
   if (localStorage.getItem('projects')) {
     myProjects = JSON.parse(localStorage.getItem('projects'));
   }

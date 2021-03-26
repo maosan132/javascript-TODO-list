@@ -9,15 +9,6 @@ const projectsListDiv = addDomElem('div', 'class', 'mt-3'); // Inside this the b
 const renderProjectItems = () => {
   const template = document.getElementById('template-project').content;
   const fragment = document.createDocumentFragment();
-  const projectDiv = addDomElem('div', 'class', 'alert alert-danger d-flex align-items-center');
-  projectDiv.classList.add('justify-content-between');
-  projectDiv.setAttribute('role', 'button');
-  const projectName = addDomElem('p', 'class', 'm-0');
-  // const iconH3 = addDomElem('h3', 'class', 'm-0');
-  // const trashIcon = addDomElem('i', 'class', 'fa fa-times-circle text-danger');
-  // trashIcon.setAttribute('role', 'button');
-  projectDiv.append(projectName);
-  // iconH3.append(trashIcon);
 
   projectsListDiv.innerHTML = '';
   myProjects.forEach(item => {
@@ -34,11 +25,7 @@ const renderProjectsContainer = () => {
   const projectTitle = addDomElem('h4', 'class', 'py-2', 'Projects');
   const projectPara = addDomElem('p', 'class', 'text-center');
   projectPara.textContent = 'Select a project and start adding your Todo tasks:\n';
-  // const homeBtnTemp = addDomElem('button', 'class', 'btn btn-primary btn-lg d-flex mb-2');
-  // homeBtnTemp.classList.add('align-items-center');
-  // homeBtnTemp.textContent = 'Projects';
-  // const homeBtn = homeBtnTemp.appendChild(addDomElem('i', 'class', 'fa fa-home', 'Home'));
-  // homeBtn.setAttribute('type', 'button');
+
 
   box.innerHTML = '';
   box.append(projectTitle, projectPara, projectsListDiv);
@@ -48,26 +35,6 @@ const renderProjectsContainer = () => {
 const renderTodoItems = (index) => {
   const template = document.getElementById('template-task').content;
   const fragment = document.createDocumentFragment();
-  const taskDiv = addDomElem('div', 'class', 'alert alert-warning align-items-center');
-  const firstRow = addDomElem('div', 'class', 'd-flex justify-content-between');
-  const date = addDomElem('span', 'id', 'date');
-  const taskName = addDomElem('p', 'class', 'm-0');
-  const buttonsH3 = addDomElem('h3', 'class', 'm-0');
-  const checkIcon = addDomElem('i', 'class', 'fas fa-check-circle text-success mr-2');
-  const deleteIcon = addDomElem('i', 'class', 'fas fa-minus-circle text-danger');
-  checkIcon.setAttribute('role', 'button');
-  deleteIcon.setAttribute('role', 'button');
-  const hrTag = addDomElem('hr', 'class', 'm-0');
-  const secondRow = addDomElem('div', 'class', 'd-flex justify-content-between');
-  const description = document.createElement('span');
-  const iconH4 = document.createElement('h4');
-  const priorityIcon = addDomElem('i', 'class', 'fa fa-battery-half');
-
-  buttonsH3.append(checkIcon, deleteIcon);
-  firstRow.append(date, taskName, buttonsH3);
-  iconH4.appendChild(priorityIcon);
-  secondRow.append(description, iconH4);
-  taskDiv.append(firstRow, hrTag, secondRow);
 
   // If there are not tasks to display, puts a message
   if (!Object.values(myProjects[index].taskList).length) {
@@ -98,9 +65,10 @@ const renderTodoItems = (index) => {
     clone.querySelector('p').textContent = task.name;
     clone.querySelectorAll('span')[1].textContent = task.description;
     clone.getElementById('date').textContent = task.date;
-
     clone.querySelector('.fas').id = task.id;
     clone.querySelectorAll('.fas')[1].id = task.id;
+    clone.querySelectorAll('.fas')[2].id = task.id;
+
     fragment.appendChild(clone);
   });
   taskListDiv.appendChild(fragment);
@@ -111,7 +79,6 @@ const renderTodoContainer = (pName) => {
   // bring project name here
   const title = addDomElem('h4', 'class', 'py-2', `Todo List - ${pName} project`);
   const taskIdentifier = addDomElem('a', 'id', `${pName}`, ''); // For grabbing task
-  // const paragraph = addDomElem('p', 'class', 'text-center', 'Start adding some tasks:\n');
 
   const project = myProjects.find(project => project.name === pName);
   const projectIndex = myProjects.indexOf(project);
