@@ -2,9 +2,7 @@ import './style.css';
 import {
   createNewProject, editProjects, showProjectItems,
 } from './controller';
-import { myProjects } from './project-model';
 
-localStorage.setItem('projects', JSON.stringify(myProjects));
 
 document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('projects')) {
