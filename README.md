@@ -16,6 +16,11 @@
 - Webpack
 - localStorage
 
+## Tested with
+
+- Jest
+- Playwright
+
 ## Live Demo
 
 [Live Demo Link](http://mauriciosantos.paternit.com/io/todo-app/)
@@ -35,6 +40,9 @@ To get a local copy up and running follow these simple example steps.
 - Install webpack and set it up using this [guide](https://webpack.js.org/guides/asset-management/#setup)
 - Test whether it is running well or not
 
+## Testing
+
+- After above steps, type in command line: npm run test
 
 ## Author
 
