@@ -1,6 +1,6 @@
-import { addDomElem } from './helper';
-import { myProjects } from './project-model';
-import { box } from './forms';
+import { addDomElem } from './helper.js';
+import { myProjects } from './project-model.js';
+import { box } from './forms.js';
 
 const taskListDiv = addDomElem('div', 'class', 'mt-3');
 const projectsListDiv = addDomElem('div', 'class', 'mt-3'); // Inside this the boxes with every project

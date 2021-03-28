@@ -1,6 +1,6 @@
 import {
   addDomElem, setAttributes, createRadios,
-} from './helper';
+} from './helper.js';
 
 const box = document.getElementById('box');
 

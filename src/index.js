@@ -1,14 +1,8 @@
 import './style.css';
 import {
   createNewProject, editProjects, showProjectItems,
-} from './controller';
+} from './controller.js';
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('projects')) {
-    myProjects = JSON.parse(localStorage.getItem('projects'));
-  }
-});
 
 const menu = document.getElementById('menu');
 

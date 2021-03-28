@@ -19,7 +19,7 @@ test('creates a new project', async () => {
   const dateField = await page.isVisible(`#todo-form >
                                           div.form-group.d-flex.align-items-center > input`);
   expect(dateField).toBe(true);
-  const radioBtns= await page.isVisible('#todo-form > div.form-group > div:nth-child(2) > input');
+  const radioBtns = await page.isVisible('#todo-form > div.form-group > div:nth-child(2) > input');
   expect(radioBtns).toBe(true);
   const AddItBtn = await page.isVisible('#todo-form > button');
   expect(AddItBtn).toBe(true);
@@ -31,7 +31,7 @@ test('creates a new project', async () => {
   await page.fill('#todo-form > div.form-group.d-flex.align-items-center > input', '2021-03-05');
   await page.click('#todo-form > button');
   const taskName = await page.textContent('#box > div > div > div:nth-child(1) > p');
-  const taskDesc = await page.textContent(`#box > div > div > div.d-flex.justify-content-between.align-items-baseline > span`);
+  const taskDesc = await page.textContent('#box > div > div > div.d-flex.justify-content-between.align-items-baseline > span');
   const taskDate = await page.textContent('#date');
 
   expect(taskName).toMatch('Coffee');
@@ -55,7 +55,7 @@ test('edits default project', async () => {
   const dateField = await page.isVisible(`#todo-form >
                                           div.form-group.d-flex.align-items-center > input`);
   expect(dateField).toBe(true);
-  const radioBtns= await page.isVisible('#todo-form > div.form-group > div:nth-child(2) > input');
+  const radioBtns = await page.isVisible('#todo-form > div.form-group > div:nth-child(2) > input');
   expect(radioBtns).toBe(true);
   const AddItBtn = await page.isVisible('#todo-form > button');
   expect(AddItBtn).toBe(true);
@@ -68,7 +68,7 @@ test('edits default project', async () => {
 
   await page.click('#todo-form > button');
   const taskName = await page.textContent('#box > div > div > div:nth-child(1) > p');
-  const taskDesc = await page.textContent(`#box > div > div > div.d-flex.justify-content-between.align-items-baseline > span`);
+  const taskDesc = await page.textContent('#box > div > div > div.d-flex.justify-content-between.align-items-baseline > span');
   const taskDate = await page.textContent('#date');
 
   expect(taskName).toMatch('Coffee');
@@ -90,4 +90,4 @@ test('explores list of projects', async () => {
   expect(titleText).toMatch('Todo List - Default project');
   const subTtl = await page.textContent('#box > h5');
   expect(subTtl).toMatch(/New Task/);
-})
+});
