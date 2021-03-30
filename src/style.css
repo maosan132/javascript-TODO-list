@@ -1,0 +1,7 @@
+body {
+  background-color: rgb(238, 215, 180);
+}
+
+#interaction > div > div > div {
+  text-align: center;
+}
