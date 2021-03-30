@@ -44,8 +44,18 @@ To get a local copy up and running follow these simple example steps.
 
 ## Testing
 
-- After above steps, type in command line: npm run test
-
+- install jest suite with this command:
+```
+npm install --save-dev jest
+```
+- install playwright with this command:
+```
+npm i -D playwright
+```
+After above steps, type in command line: 
+```
+npm run test
+```
 ## Author
 
 👤 **Mauricio Santos**
