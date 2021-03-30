@@ -46,7 +46,6 @@ To get a local copy up and running follow these simple example steps.
 
 - Install Webpack:
 ```
-npm init -y
 npm install webpack webpack-cli --save-dev
 ```
 - Install Jest (below)
