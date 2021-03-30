@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import {
   addDomElem, setAttributes, createRadios,
 } from './helper.js';

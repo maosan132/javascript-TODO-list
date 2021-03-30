@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { Project, myProjects } from './project-model.js';
 import Task from './task-model.js';
 import { newProjectForm, newTodoForm, box } from './forms.js';

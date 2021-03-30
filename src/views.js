@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { addDomElem } from './helper.js';
 import { myProjects } from './project-model.js';
 import { box } from './forms.js';

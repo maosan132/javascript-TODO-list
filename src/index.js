@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import './style.css';
 import {
   createNewProject, editProjects, showProjectItems,
