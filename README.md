@@ -42,6 +42,15 @@ To get a local copy up and running follow these simple example steps.
 - Install webpack and set it up using this [guide](https://webpack.js.org/guides/asset-management/#setup)
 - Test whether it is running well or not
 
+## Dependencies
+
+- Install Webpack:
+```
+npm init -y
+npm install webpack webpack-cli --save-dev
+```
+- Install Jest (below)
+- Install Playwright (below)
 ## Testing
 
 - install jest suite with this command:
