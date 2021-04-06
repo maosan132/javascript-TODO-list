@@ -1,9 +1,10 @@
-import { Project, myProjects } from './project-model';
-import Task from './task-model';
-import { newProjectForm, newTodoForm, box } from './forms';
+/* eslint-disable import/extensions */
+import { Project, myProjects } from './project-model.js';
+import Task from './task-model.js';
+import { newProjectForm, newTodoForm, box } from './forms.js';
 import {
   renderProjectsContainer, renderTodoItems, renderTodoContainer, taskListDiv, renderProjectItems,
-} from './views';
+} from './views.js';
 
 const validateProjectName = (nameInput) => {
   const checkValue = myProjects.includes(nameInput.value);
