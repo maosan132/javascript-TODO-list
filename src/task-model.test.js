@@ -1,4 +1,5 @@
 import Task from './task-model';
+
 test('returns an object', () => {
   const newTask = new Task('Mau', 'desc', '11-11-21', 'high', false);
   expect(newTask.name).toBe('Mau');
