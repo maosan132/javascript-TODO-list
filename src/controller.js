@@ -95,9 +95,9 @@ const captureNewTask = (projectName) => {
 const addProject = p => {
   const project = new Project(p); // Creates project with name specified in form
   myProjects.push(project);
-
-  renderTodoContainer(p);
-  captureNewTask(p);
+  const result = { prjName: project.name, myPrjs: myProjects[myProjects.indexOf(project)].name };
+  // console.log(result.prjName);
+  return result;
 };
 
 // *****First menu option*****
@@ -112,6 +112,8 @@ const createNewProject = () => {
     if (!validateProjectName(nameInput)) {
       const projectName = nameInput.value;
       addProject(projectName);
+      renderTodoContainer(projectName);
+      captureNewTask(projectName);
     }
   });
 };
@@ -182,5 +184,5 @@ taskListDiv.addEventListener('click', (e) => {
 });
 
 export {
-  createNewProject, editProjects, showProjectItems,
+  createNewProject, editProjects, showProjectItems, addProject,
 };
